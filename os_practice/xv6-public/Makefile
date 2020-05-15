@@ -28,6 +28,7 @@ OBJS = \
 	vectors.o\
 	vm.o\
 
+#added by jiun
 # Cross-compiling (e.g., on Mac OS X)
 # TOOLPREFIX = i386-jos-elf
 
@@ -240,6 +241,21 @@ qemu-gdb: fs.img xv6.img .gdbinit
 qemu-nox-gdb: fs.img xv6.img .gdbinit
 	@echo "*** Now run 'gdb'." 1>&2
 	$(QEMU) -nographic $(QEMUOPTS) -S $(QEMUGDB)
+
+
+ifndef SCHED_POLICY
+	@echo 'No option';
+else
+
+ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
+	@echo "Multi level";
+endif
+ifeq ($(SCHED_POLICY),MLFQ_SCHED)
+	@echo 'MLFQ';
+	@#MLFQ_K = 3 CPUS=1 -j
+
+endif
+endif
 
 # CUT HERE
 # prepare dist for students

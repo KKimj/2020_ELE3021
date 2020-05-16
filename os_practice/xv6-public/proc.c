@@ -8,7 +8,7 @@
 #include "spinlock.h"
 
 
-#include "user.h"
+//#include "user.h"
 
 struct {
   struct spinlock lock;
@@ -483,7 +483,7 @@ for(;;)
   // 100 ticks 마다 초기화
   sti();
   // interrupt로 처리해야 한다.
-  if(uptime() % 100 == 0)
+  //if(uptime() % 100 == 0)
   {
     //priority boosting
   }

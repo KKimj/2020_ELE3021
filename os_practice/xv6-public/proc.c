@@ -339,7 +339,8 @@ int setpriority(int pid, int priority)
     // priority 의 범위를 벗어난 경우.
     return -2;
   }
-  return 0;
+  return pid+priority;
+  //return 0;
 }
 
 

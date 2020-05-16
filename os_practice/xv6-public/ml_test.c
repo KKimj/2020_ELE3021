@@ -9,7 +9,7 @@
 #define NUM_THREAD 4
 
 
-#define NO_YIELD
+//#define NO_YIELD
 
 #ifdef NO_YIELD
 //TODO

@@ -9,7 +9,7 @@
 #define NUM_THREAD 4
 #define MAX_LEVEL 5
 
-#define TEST
+//#define TEST
 #ifdef TEST
 void yield(void)
 {

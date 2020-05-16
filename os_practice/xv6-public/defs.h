@@ -119,7 +119,7 @@ void            sleep(void*, struct spinlock*);
 void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
-int             yield(void);
+void            yield(void);
 
 // added by Kim Jiun
 int             getlev(void);

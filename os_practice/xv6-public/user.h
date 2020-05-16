@@ -23,7 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int yield(void);
+void yield(void);
 int getlev(void);
 int setpriority(int, int);
 

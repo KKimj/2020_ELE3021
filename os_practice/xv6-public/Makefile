@@ -28,7 +28,8 @@ OBJS = \
 	vectors.o\
 	vm.o\
 
-#added by jiun
+
+
 # Cross-compiling (e.g., on Mac OS X)
 # TOOLPREFIX = i386-jos-elf
 
@@ -91,10 +92,25 @@ ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]nopie'),)
 CFLAGS += -fno-pie -nopie
 endif
 
+
+
 xv6.img: bootblock kernel
 	dd if=/dev/zero of=xv6.img count=10000
 	dd if=bootblock of=xv6.img conv=notrunc
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
+
+ifndef SCHED_POLICY
+	@echo 'No option';
+else
+
+ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
+	@echo "Multi level";
+endif
+ifeq ($(SCHED_POLICY),MLFQ_SCHED)
+	@echo 'MLFQ';
+	@#MLFQ_K = 3 CPUS=1 -j
+endif
+endif
 
 xv6memfs.img: bootblock kernelmemfs
 	dd if=/dev/zero of=xv6memfs.img count=10000
@@ -243,19 +259,8 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 	$(QEMU) -nographic $(QEMUOPTS) -S $(QEMUGDB)
 
 
-ifndef SCHED_POLICY
-	@echo 'No option';
-else
 
-ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
-	@echo "Multi level";
-endif
-ifeq ($(SCHED_POLICY),MLFQ_SCHED)
-	@echo 'MLFQ';
-	@#MLFQ_K = 3 CPUS=1 -j
 
-endif
-endif
 
 # CUT HERE
 # prepare dist for students

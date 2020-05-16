@@ -453,7 +453,9 @@ scheduler(void)
 #endif
 
 #ifdef MLFQ_SCHED
-  panic("MLFQ_SCHED case %d", MLFQ_K);
+  if(MLFQ_K == -1)
+  panic("MLFQ_SCHED is -1 case");
+panic("MLFQ_SCHED case");
 #endif
 
 

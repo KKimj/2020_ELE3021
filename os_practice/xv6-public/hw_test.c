@@ -6,9 +6,18 @@
 int main(int argc, char *argv[])
 {
     printf(1, "start\n");
-    yield();
-    printf(1, "Call yield\n");
-    printf(1, "Call getlev return value : %d\n", getlev());
-    printf(1, "Call setpriority return value : %d\n", setpriority(1, 4));
+    int i;
+    for(;;)
+    {
+	    i = 0;
+	    while(i<1000)
+	    {
+		printf(1, "time : %d", uptime());
+		    i++;
+	    }
+   	
+    }
+    
+    
     exit();
 }

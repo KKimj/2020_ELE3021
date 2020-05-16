@@ -8,6 +8,19 @@
 
 #define NUM_THREAD 4
 
+
+#define NO_YIELD
+
+#ifdef NO_YIELD
+//TODO
+
+void yield(void)
+{
+	return;
+}
+#endif
+
+
 int parent;
 
 int fork_children()

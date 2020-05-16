@@ -355,6 +355,7 @@ int setpriority(int pid, int priority)
 void
 scheduler(void)
 {
+#ifndef SCHED_POLICY
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
@@ -386,6 +387,18 @@ scheduler(void)
     release(&ptable.lock);
 
   }
+#else
+
+#ifdef MULTILEVEL_SCHED
+  panic("MULTILEVEL_SCHED case");
+#endif
+
+#ifdef MLFQ_SCHED
+  panic("MLFQ_SCHED case");
+#endif
+
+
+#endif
 }
 
 // Enter scheduler.  Must hold only ptable.lock

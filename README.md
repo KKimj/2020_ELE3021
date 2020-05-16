@@ -1,10 +1,10 @@
 TODO 1 makefile branch  
 
-TODO 2 add systemcall  
+TODO 2 implementation systemcall  
 
 ** implementaion branch in proc.c with C macro
 
-TODO 2-0  
+Done TODO 2-0  
 ** Add System calls
 
 TODO 2-1

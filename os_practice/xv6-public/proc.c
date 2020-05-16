@@ -328,7 +328,7 @@ int setpriority(int pid, int priority)
 {
   
 
-  if(pid != pid) 
+  if(pid != pid && 1) 
   {
     // pid가 존재하지 않거나
     //자기 자식의 프로세스가 아닌경우

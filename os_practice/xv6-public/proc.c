@@ -326,21 +326,30 @@ getlev(void)
 //TODO setpriority
 int setpriority(int pid, int priority)
 {
-  
-
-  //if(pid != pid && 1) 
-  {
-    // pid가 존재하지 않거나
-    //자기 자식의 프로세스가 아닌경우
-    //return -1;
-  }
   if(priority < 0 || priority > 10)
   {
     // priority 의 범위를 벗어난 경우.
     return -2;
   }
-  return pid+priority;
-  //return 0;
+
+  struct proc *p_ = myproc(), *p;
+  int ch = 0;
+
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->pid != pid)
+      continue;
+
+    if(p->parent->pid == p_->pid)
+    {
+      ch = 1;
+    }
+    
+  }
+  release(&ptable.lock);
+
+  if(ch) return 0;
+  return -1;
 }
 
 
@@ -352,6 +361,15 @@ int setpriority(int pid, int priority)
 //  - swtch to start running that process
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
+#ifdef MLFQ_SCHED
+struct mlfq
+{
+  struct proc *p;
+  int priority;
+  struct mlfq *next;
+}; 
+#endif
+
 void
 scheduler(void)
 {
@@ -455,7 +473,41 @@ scheduler(void)
 #ifdef MLFQ_SCHED
   if(MLFQ_K == -1)
   panic("MLFQ_SCHED is -1 case");
-panic("MLFQ_SCHED case");
+struct mlfq _mlfq[MLFQ_K];
+
+for(;;)
+{
+  // 100 ticks 마다 초기화
+  sti();
+  // interrupt로 처리해야 한다.
+  if(uptime() % 100 == 0)
+  {
+    //priority boosting
+  }
+  acquire(&ptable.lock);
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->state != RUNNABLE)
+        continue;
+
+      // Switch to chosen process.  It is the process's job
+      // to release ptable.lock and then reacquire it
+      // before jumping back to us.
+      c->proc = p;
+      switchuvm(p);
+      p->state = RUNNING;
+
+      swtch(&(c->scheduler), p->context);
+      switchkvm();
+
+      // Process is done running for now.
+      // It should have changed its p->state before coming back.
+      c->proc = 0;
+    }
+  release(&ptable.lock);
+
+
+
+}
 #endif
 
 

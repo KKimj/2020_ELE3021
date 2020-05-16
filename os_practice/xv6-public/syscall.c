@@ -130,6 +130,9 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_yield]   sys_yield,
+[SYS_getlev]  sys_getlev,
+[SYS_setpriority] sys_setpriority,
 };
 
 void

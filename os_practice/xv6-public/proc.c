@@ -356,6 +356,7 @@ void
 scheduler(void)
 {
 #ifndef SCHED_POLICY
+panic("No SCHED_POLICY case");
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;

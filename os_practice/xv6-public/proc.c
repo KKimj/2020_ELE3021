@@ -7,6 +7,9 @@
 #include "proc.h"
 #include "spinlock.h"
 
+
+#include "user.h"
+
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
@@ -473,7 +476,7 @@ scheduler(void)
 #ifdef MLFQ_SCHED
   if(MLFQ_K == -1)
   panic("MLFQ_SCHED is -1 case");
-struct mlfq _mlfq[MLFQ_K];
+//struct mlfq _mlfq[MLFQ_K];
 
 for(;;)
 {

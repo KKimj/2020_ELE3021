@@ -424,6 +424,7 @@ scheduler(void)
     }
     if(n_pid_even==0)
     {
+      cli();
       for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;

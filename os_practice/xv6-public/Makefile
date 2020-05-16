@@ -102,8 +102,8 @@ xv6.img: bootblock kernel
 ifndef SCHED_POLICY
 	@echo 'No option';
 else
-
-CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
+	CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
+	
 ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
 	@echo "Multi level";
 	

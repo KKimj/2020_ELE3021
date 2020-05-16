@@ -94,7 +94,11 @@ endif
 
 ifdef SCHED_POLICY
 CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
+ifeq ($(SCHED_POLICY), MLFQ_SCHED)
+CFLAGS += -D MLFQ_K=$(MLFQ_K)
 endif
+endif
+
 
 
 

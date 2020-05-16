@@ -99,19 +99,21 @@ xv6.img: bootblock kernel
 	dd if=bootblock of=xv6.img conv=notrunc
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
 
-ifndef SCHED_POLICY
-	@echo 'No option';
-else
-	CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
+ifdef SCHED_POLICY
+	@echo 'Yes option';
+CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
 	
 ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
 	@echo "Multi level";
-	
 endif
+
 ifeq ($(SCHED_POLICY),MLFQ_SCHED)
 	@echo 'MLFQ';
 	@#MLFQ_K = 3 CPUS=1 -j
 endif
+
+else
+	@echo 'No option';
 endif
 
 xv6memfs.img: bootblock kernelmemfs

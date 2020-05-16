@@ -92,6 +92,10 @@ ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]nopie'),)
 CFLAGS += -fno-pie -nopie
 endif
 
+ifdef SCHED_POLICY
+CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
+endif
+
 
 
 xv6.img: bootblock kernel
@@ -99,20 +103,7 @@ xv6.img: bootblock kernel
 	dd if=bootblock of=xv6.img conv=notrunc
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
 
-ifndef SCHED_POLICY
-	@echo 'No option';
-else
-	CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
-	
-ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
-	@echo "Multi level";
-	
-endif
-ifeq ($(SCHED_POLICY),MLFQ_SCHED)
-	@echo 'MLFQ';
-	@#MLFQ_K = 3 CPUS=1 -j
-endif
-endif
+
 
 xv6memfs.img: bootblock kernelmemfs
 	dd if=/dev/zero of=xv6memfs.img count=10000

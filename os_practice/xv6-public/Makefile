@@ -103,8 +103,10 @@ ifndef SCHED_POLICY
 	@echo 'No option';
 else
 
+CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
 ifeq ($(SCHED_POLICY),MULTILEVEL_SCHED)
 	@echo "Multi level";
+	
 endif
 ifeq ($(SCHED_POLICY),MLFQ_SCHED)
 	@echo 'MLFQ';

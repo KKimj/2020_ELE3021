@@ -103,6 +103,10 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_yield(void);
+extern int sys_getlev(void);
+extern int sys_setpriority(void);
+// add by Kim Jiun
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,

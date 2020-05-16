@@ -311,6 +311,38 @@ wait(void)
   }
 }
 
+// added by Kim Jiun
+// To hw-1
+
+//TODO getlev
+int
+getlev(void)
+{
+  int lev = 1;
+
+  return lev;
+}
+
+//TODO setpriority
+int setpriority(int pid, int priority)
+{
+  
+
+  if(pid != pid) 
+  {
+    // pid가 존재하지 않거나
+    //자기 자식의 프로세스가 아닌경우
+    return -1;
+  }
+  if(priority < 0 || priority > 10)
+  {
+    // priority 의 범위를 벗어난 경우.
+    return -2;
+  }
+  return 0;
+}
+
+
 //PAGEBREAK: 42
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
@@ -382,13 +414,14 @@ sched(void)
 }
 
 // Give up the CPU for one scheduling round.
-void
+int
 yield(void)
 {
   acquire(&ptable.lock);  //DOC: yieldlock
   myproc()->state = RUNNABLE;
   sched();
   release(&ptable.lock);
+  return 0;
 }
 
 // A fork child's very first scheduling by scheduler()

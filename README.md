@@ -4,6 +4,9 @@ TODO 2 add systemcall
 
 ** implementaion branch in proc.c with C macro
 
+TODO 2-0  
+** Add System calls
+
 TODO 2-1
 ** System calls is just to print its name.
 

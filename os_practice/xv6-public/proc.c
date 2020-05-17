@@ -477,13 +477,13 @@ scheduler(void)
   int max_priority = -1;
   char ch = 0;
 
-  uint pev_ticks = _uptime();
+  
   
   //panic("before get in to for loop");
   sti();
   setlev_to0();
   //panic("after setlev_0 function");
-
+  
   for(;;){
     // Enable interrupts on this processor.
     ch = 0;
@@ -519,7 +519,7 @@ scheduler(void)
     }
     if(ch)
     {
-      
+      uint pev_ticks = _uptime();
       p = _p;
       c->proc = p;
       switchuvm(p);

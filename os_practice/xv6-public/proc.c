@@ -371,10 +371,6 @@ int
 getlev(void)
 {
   int lev = -1;
-
-  struct proc *p_ = myproc();
-  //p_->pid;
-
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
 
   struct proc *p;
@@ -560,11 +556,11 @@ for(;;)
   }
 
   // 특정 큐의 time quantum을 다 소모했을 경우
-  uint tmp_ticks = uptime();
+  uint tmp_ticks = _uptime();
   _ticks += tmp_ticks - _pev_ticks;
   _pev_ticks = tmp_ticks;
 
-  if(_ticks >= cur_level<<1+4)
+  if(_ticks >= (cur_level<<1)+4)
   {
     cur_level ++;
     _ticks = 0;

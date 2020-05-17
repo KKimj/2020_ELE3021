@@ -535,6 +535,7 @@ struct _mlfq * fq;
 int cur_level = 0;
 uint _ticks = 0;
 uint _pev_ticks = _uptime();
+setlev_to0();
 for(;;)
 {
   

@@ -327,7 +327,7 @@ wait(void)
 //  - swtch to start running that process
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
-#ifdef MLFQ_SCHED
+
 int _uptime(void)
 {
   uint xticks;
@@ -349,12 +349,12 @@ struct _mlfq
 void setlev_to0(void)
 {
   struct proc *p;
+  cli();
   struct cpu *c = mycpu();
   c->proc = 0;
 
   
   struct _mlfq * fq;
-  cli();
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
     fq->pid = p->pid;
@@ -363,7 +363,6 @@ void setlev_to0(void)
   release(&ptable.lock);
 }
 
-#endif
 
 
 //TODO getlev
@@ -374,12 +373,11 @@ getlev(void)
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
 
   struct proc *p;
+  cli();
   struct cpu *c = mycpu();
   c->proc = 0;
-
-  
   struct _mlfq * fq;
-  cli();
+
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
     if(p->pid == fq->pid)
@@ -401,7 +399,7 @@ int setpriority(int pid, int priority)
     // priority 의 범위를 벗어난 경우.
     return -2;
   }
-
+  cli();
   struct proc *p_ = myproc(), *p;
   int ch = 0;
 
@@ -412,6 +410,7 @@ int setpriority(int pid, int priority)
 
     if(p->parent->pid == p_->pid)
     {
+	    // prioirty 설정
       ch = 1;
     }
     
@@ -534,20 +533,21 @@ struct _mlfq * fq;
 
 int cur_level = 0;
 uint _ticks = 0;
-uint _pev_ticks = _uptime();
 setlev_to0();
+uint _pev_ticks = _uptime();
 for(;;)
 {
-  
-  sti();
   // 100 ticks 마다 초기화
   if(_uptime() % 100 == 0)
   {
     //priority boosting
-    cur_level = 0;
+   cli();
+	cur_level = 0;
     setlev_to0();
     _ticks = 0;
     _pev_ticks = _uptime();
+   
+    // panic("100 ticks");
   }
 
   // 모든 큐가 time quantum을 소모했을 경우
@@ -561,12 +561,14 @@ for(;;)
   _ticks += tmp_ticks - _pev_ticks;
   _pev_ticks = tmp_ticks;
 
-  if(_ticks >= (cur_level<<1)+4)
+  if(_ticks >= (cur_level*2)+4)
   {
+//panic("queue level up");
     cur_level ++;
     _ticks = 0;
   }
 
+  sti();
   
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){

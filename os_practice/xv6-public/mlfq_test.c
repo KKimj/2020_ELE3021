@@ -9,25 +9,6 @@
 #define NUM_THREAD 4
 #define MAX_LEVEL 5
 
-//#define TEST
-#ifdef TEST
-void yield(void)
-{
-	return;
-}
-
-int getlev(void)
-{
-	return 1;
-}
-
-int setpriority(int pid, int priority)
-{
-	return 0;
-}
-
-#endif
-
 int parent;
 
 int fork_children()

@@ -482,6 +482,7 @@ scheduler(void)
   //panic("before get in to for loop");
   sti();
   setlev_to0();
+  uint _100ticks = _uptime();
   //panic("after setlev_0 function");
   
   for(;;){
@@ -492,13 +493,15 @@ scheduler(void)
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
     for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-      if(_uptime() % 100 == 0)
+      fq->pid = p->pid;
+      if(_uptime() - _100ticks >= 100)
       {
       //priority boosting
         release(&ptable.lock);
         cur_level = 0;
         setlev_to0();
         acquire(&ptable.lock);
+        _100ticks = _uptime();
       }
       if(p->state != RUNNABLE)
         continue;

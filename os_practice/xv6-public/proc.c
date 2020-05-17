@@ -292,7 +292,6 @@ struct _mlfq
 void setticks_to0(void)
 {
   struct proc * _p = myproc();
-  struct proc *p;
   struct _mlfq * fq;
 
   for(fq = mlfq; fq < & mlfq[NPROC]; fq++)

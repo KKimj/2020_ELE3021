@@ -349,11 +349,6 @@ struct _mlfq
 void setlev_to0(void)
 {
   struct proc *p;
-  cli();
-  struct cpu *c = mycpu();
-  c->proc = 0;
-
-  
   struct _mlfq * fq;
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
@@ -367,11 +362,6 @@ void setlev_to0(void)
 void setlev_toDown(int curlevel)
 {
   struct proc *p;
-  cli();
-  struct cpu *c = mycpu();
-  c->proc = 0;
-
-  
   struct _mlfq * fq;
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
@@ -395,9 +385,6 @@ getlev(void)
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
 
   struct proc *p;
-  cli();
-  struct cpu *c = mycpu();
-  c->proc = 0;
   struct _mlfq * fq;
 
   acquire(&ptable.lock);
@@ -619,11 +606,13 @@ for(;;)
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
+      release(&ptable.lock);
   }
   else
   {
     // 특정 큐가 time quantum을 소모했을 경우
     cur_level++;
+    release(&ptable.lock);
     if(MLFQ_K == cur_level) 
     {
       // 모든 큐가 time quantum을 소모했을 경우
@@ -633,7 +622,7 @@ for(;;)
     }
     setlev_toDown(cur_level-1);
   }
-   release(&ptable.lock);
+   
    
   }
 #endif

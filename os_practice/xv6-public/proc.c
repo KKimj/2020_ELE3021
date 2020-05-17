@@ -487,6 +487,10 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
+      if(fq->level != cur_level)
+        continue;
+      if(fq->ticks >= (cur_level*2)+4)
+          continue;
       if(max_priority > fq->priority)
         continue;
 

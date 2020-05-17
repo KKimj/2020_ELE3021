@@ -533,31 +533,30 @@ scheduler(void)
 #endif
 
 #ifdef MLFQ_SCHED
-  if(MLFQ_K == -1)
-  panic("MLFQ_SCHED is -1 case");
-//struct mlfq _mlfq[MLFQ_K];
-struct proc *p;
+  
+  struct proc *p;
 
-struct cpu *c = mycpu();
-c->proc = 0;
+  struct cpu *c = mycpu();
+  c->proc = 0;
 
-struct _mlfq * fq;
+  struct _mlfq * fq;
 
-int cur_level = 0;
-setlev_to0();
+  int cur_level = 0;
+  setlev_to0();
 
-for(;;)
-{
-  // 100 ticks 마다 초기화
-  if(_uptime() % 100 == 0)
+  for(;;)
   {
-    //priority boosting
-    cli();
-	  cur_level = 0;
-    setlev_to0();
-   
-    // panic("100 ticks");
-  }
+    sti();
+    // 100 ticks 마다 초기화
+    if(_uptime() % 100 == 0)
+    {
+      //priority boosting
+      cli();
+      cur_level = 0;
+      setlev_to0();
+    
+      // panic("100 ticks");
+    }
   
   
   struct proc *_p;

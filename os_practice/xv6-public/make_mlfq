@@ -2,4 +2,3 @@ make clean
 make SCHED_POLICY=MLFQ_SCHED MLFQ_K=1
 make fs.img
 ./run.sh
-

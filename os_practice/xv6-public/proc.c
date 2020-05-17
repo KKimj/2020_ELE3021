@@ -576,8 +576,8 @@ scheduler(void)
         {
           if(__fq->level != cur_level-1)
             continue;
-          // if(__fq->ticks < 3)
-          //   _ch = 1;
+          if(__fq->ticks < 3)
+             _ch = 1;
         }
         if(_ch) 
         {

@@ -476,7 +476,7 @@ scheduler(void)
       {
       //priority boosting
         cur_level = 0;
-        setlev_to0();
+        //setlev_to0();
       }
       if(p->state != RUNNABLE)
         continue;

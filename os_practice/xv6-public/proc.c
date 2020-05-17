@@ -475,20 +475,23 @@ scheduler(void)
       if(_uptime() % 100 == 0)
       {
       //priority boosting
-      release(&ptable.lock);
+        release(&ptable.lock);
         cur_level = 0;
         setlev_to0();
-      acquire(&ptable.lock);
+        acquire(&ptable.lock);
       }
       if(p->state != RUNNABLE)
         continue;
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
+      if(max_priority > fq->priority)
+        continue;
 
+      ch = 1;
+      max_priority = fq->priority;
       _p = p;
-      continue;
-      
+      _fq = fq;
     }
     {
       p = _p;
@@ -535,7 +538,6 @@ scheduler(void)
     if(max_priority > fq->priority)
         continue;
 
-    //panic("found out p");
     ch = 1;
     max_priority = fq->priority;
     _p = p;

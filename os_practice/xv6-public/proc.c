@@ -543,9 +543,10 @@ scheduler(void)
 
   int cur_level = 0;
 
-  panic("before get in to for loop");
+  //panic("before get in to for loop");
 
   setlev_to0();
+  panic("after setlev_0 function");
 
   for(;;)
   {

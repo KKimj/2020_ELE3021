@@ -555,7 +555,7 @@ scheduler(void)
       cur_level = 0;
       setlev_to0();
     
-      // panic("100 ticks");
+      panic("100 ticks");
     }
   
   

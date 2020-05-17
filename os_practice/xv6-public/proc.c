@@ -335,6 +335,7 @@ void setlev_toDown(int curlevel)
 
 int is0timequantum(int curlevel)
 {
+  return 1;
   struct _mlfq * fq;
   for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
   {
@@ -536,8 +537,8 @@ scheduler(void)
     }
     if(ch)
     {
-      uint pev_ticks = _uptime();
-      //_fq->ticks++;
+      //uint pev_ticks = _uptime();
+      _fq->ticks++;
       p = _p;
       c->proc = p;
       switchuvm(p);
@@ -548,11 +549,11 @@ scheduler(void)
       // It should have changed its p->state before coming back.
 
 
-      uint tmp = _uptime();
-      _fq->ticks+= tmp-pev_ticks;
-      pev_ticks = tmp;
+      // uint tmp = _uptime();
+      // _fq->ticks+= tmp-pev_ticks;
+      // pev_ticks = tmp;
 
-      
+
       c->proc = 0;
     }
     else

@@ -299,6 +299,7 @@ void setticks_to0(void)
     if(_p->pid == fq->pid)
     {
       fq->ticks = 0;
+      fq->level = 0;
     }
   }
   

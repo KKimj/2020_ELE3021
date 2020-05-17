@@ -453,6 +453,14 @@ scheduler(void)
   c->proc = 0;
   struct _mlfq * fq;
   int cur_level = 0;
+
+  
+  struct proc *_p = 0;
+  struct _mlfq * _fq = 0;
+  int max_priority = -1;
+  char ch = 0;
+
+
   //panic("before get in to for loop");
   sti();
   setlev_to0();
@@ -469,6 +477,13 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
+
+      _p = p;
+      continue;
+      
+    }
+    {
+      p = _p;
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
@@ -480,7 +495,7 @@ scheduler(void)
     }
     release(&ptable.lock);
   }
-  
+
   for(;;)
   {
     sti();
@@ -496,10 +511,6 @@ scheduler(void)
     }
   
   
-  struct proc *_p = 0;
-  struct _mlfq * _fq = 0;
-  int max_priority = -1;
-  char ch = 0;
   sti();
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){

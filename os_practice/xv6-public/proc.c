@@ -477,7 +477,8 @@ scheduler(void)
   int max_priority = -1;
   char ch = 0;
 
-
+  uint pev_ticks = _uptime();
+  
   //panic("before get in to for loop");
   sti();
   setlev_to0();
@@ -518,7 +519,7 @@ scheduler(void)
     }
     if(ch)
     {
-      _fq->ticks++;
+      
       p = _p;
       c->proc = p;
       switchuvm(p);
@@ -527,6 +528,9 @@ scheduler(void)
       switchkvm();
       // Process is done running for now.
       // It should have changed its p->state before coming back.
+      uint tmp = _uptime();
+      _fq->ticks+= tmp-pev_ticks;
+      pev_ticks = tmp;
       c->proc = 0;
     }
     else

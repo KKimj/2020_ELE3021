@@ -172,8 +172,9 @@ void
 iinit(int dev)
 {
   int i = 0;
-  
+  cprintf("before initlock");
   initlock(&icache.lock, "icache");
+  cprintf("after initlock");
   for(i = 0; i < NINODE; i++) {
     initsleeplock(&icache.inode[i].lock, "inode");
   }

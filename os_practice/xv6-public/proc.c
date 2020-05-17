@@ -454,6 +454,7 @@ scheduler(void)
   struct _mlfq * fq;
   int cur_level = 0;
   //panic("before get in to for loop");
+  sti();
   setlev_to0();
   //panic("after setlev_0 function");
   for(;;)
@@ -463,7 +464,7 @@ scheduler(void)
     if(_uptime() % 100 == 0)
     {
       //priority boosting
-      cli();
+      //cli();
       cur_level = 0;
       setlev_to0();
     

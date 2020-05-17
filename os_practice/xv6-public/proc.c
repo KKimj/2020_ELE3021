@@ -491,7 +491,7 @@ scheduler(void)
     if(max_priority > fq->priority)
         continue;
 
-    panic("found out p");
+    //panic("found out p");
     ch = 1;
     max_priority = fq->priority;
     _p = p;
@@ -501,6 +501,7 @@ scheduler(void)
   
   if(ch)
   {
+    //panic("before context switch");
     _fq->ticks++;
     
     c->proc = _p;
@@ -512,15 +513,19 @@ scheduler(void)
       // It should have changed its p->state before coming back.
       c->proc = 0;
       release(&ptable.lock);
+      //panic("after context switch");
   }
   else
   {
     // 특정 큐가 time quantum을 소모했을 경우
     cur_level++;
+    //panic("queue level up");
     release(&ptable.lock);
     if(MLFQ_K == cur_level) 
     {
       // 모든 큐가 time quantum을 소모했을 경우
+
+      //panic("bosting");
       cur_level = 0;
       setlev_to0();
       continue;

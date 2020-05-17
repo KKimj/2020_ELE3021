@@ -471,8 +471,8 @@ scheduler(void)
     }
   
   
-  struct proc *_p;
-  struct _mlfq * _fq;
+  struct proc *_p = 0;
+  struct _mlfq * _fq = 0;
   int max_priority = -1;
   char ch = 0;
   sti();
@@ -513,7 +513,7 @@ scheduler(void)
       // It should have changed its p->state before coming back.
       c->proc = 0;
       release(&ptable.lock);
-      //panic("after context switch");
+      panic("after context switch");
   }
   else
   {
@@ -525,7 +525,7 @@ scheduler(void)
     {
       // 모든 큐가 time quantum을 소모했을 경우
 
-      //panic("bosting");
+      // panic("bosting");
       cur_level = 0;
       setlev_to0();
       continue;

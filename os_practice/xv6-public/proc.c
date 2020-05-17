@@ -298,7 +298,7 @@ void setticks_to0(void)
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
     if(_p->pid == fq->pid)
     {
-      fq->ticks = 0;
+      //fq->ticks = 0;
     }
   }
   release(&ptable.lock);
@@ -660,7 +660,7 @@ void
 yield(void)
 {
   #ifdef MLFQ_SCHED
-  //setticks_to0();
+  setticks_to0();
   #endif
   acquire(&ptable.lock);  //DOC: yieldlock
   myproc()->state = RUNNABLE;
@@ -692,7 +692,7 @@ void
 sleep(void *chan, struct spinlock *lk)
 {
   #ifdef MLFQ_SCHED
-  //setticks_to0();
+  setticks_to0();
   #endif
   struct proc *p = myproc();
   

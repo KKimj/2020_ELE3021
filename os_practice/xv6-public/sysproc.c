@@ -59,6 +59,10 @@ sys_sbrk(void)
 int
 sys_sleep(void)
 {
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
+  
   int n;
   uint ticks0;
 
@@ -74,6 +78,9 @@ sys_sleep(void)
     sleep(&ticks, &tickslock);
   }
   release(&tickslock);
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
   return 0;
 }
 
@@ -96,7 +103,11 @@ sys_uptime(void)
 int
 sys_yield(void)
 {
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
   yield();
+  
   return 0;
 }
 

@@ -288,6 +288,23 @@ struct _mlfq
   int level;
   uint ticks;
 } mlfq[NPROC]; 
+
+void setticks_to0(void)
+{
+  struct proc * _p = myproc();
+  struct _mlfq * fq;
+
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
+    if(_p->pid == fq->pid)
+    {
+      fq->ticks = 0;
+      fq->level = 0;
+    }
+  }
+  
+}
+
 void setlev_to0(void)
 {
   struct proc *p;
@@ -304,6 +321,7 @@ void setlev_toDown(int curlevel)
 {
   struct proc *p;
   struct _mlfq * fq;
+
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
     if(fq->level != curlevel)
@@ -314,22 +332,36 @@ void setlev_toDown(int curlevel)
   }
   release(&ptable.lock);
 }
+
+int is0timequantum(int curlevel)
+{
+  return 1;
+  struct _mlfq * fq;
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
+    if(fq->level != curlevel)
+      continue;
+    if(fq->ticks < 3)
+      return 0;
+  }
+  return 1;
+}
 //TODO getlev
 int
 getlev(void)
 {
   int lev = -1;
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
-  struct proc *p;
+  struct proc * _p = myproc();
   struct _mlfq * fq;
-  acquire(&ptable.lock);
-  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-    if(p->pid == fq->pid)
+
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
+    if(_p->pid == fq->pid)
     {
       lev = fq->level;
     }
   }
-  release(&ptable.lock);
   return lev;
 }
 //TODO setpriority
@@ -453,80 +485,120 @@ scheduler(void)
   c->proc = 0;
   struct _mlfq * fq;
   int cur_level = 0;
-  //panic("before get in to for loop");
-  setlev_to0();
-  //panic("after setlev_0 function");
-  for(;;)
-  {
-    sti();
-    // 100 ticks 마다 초기화
-    if(_uptime() % 100 == 0)
-    {
-      //priority boosting
-      cli();
-      cur_level = 0;
-      setlev_to0();
-    
-      panic("100 ticks");
-    }
+
   
-  
-  struct proc *_p;
-  struct _mlfq * _fq;
+  struct proc *_p = 0;
+  struct _mlfq * _fq = 0;
   int max_priority = -1;
   char ch = 0;
-  sti();
-  acquire(&ptable.lock);
-  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-    panic("loop in ptable");
-    fq->pid = p->pid;
-    if(p->state != RUNNABLE)
-        continue;
-    
-    if(fq->level != cur_level)
-        continue;
-    if(fq->ticks >= (cur_level*2)+4)
-        continue;
-    
-    if(max_priority > fq->priority)
-        continue;
-    ch = 1;
-    max_priority = fq->priority;
-    _p = p;
-    _fq = fq;
-  }
- 
+
   
-  if(ch)
-  {
-    _fq->ticks++;
-    
-    c->proc = _p;
-      switchuvm(_p);
+  
+  //panic("before get in to for loop");
+  sti();
+  setlev_to0();
+  uint _100ticks = _uptime();
+  //panic("after setlev_0 function");
+  
+  for(;;){
+    // Enable interrupts on this processor.
+    ch = 0;
+    max_priority = -1;
+    sti();
+    // Loop over process table looking for process to run.
+    acquire(&ptable.lock);
+    for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+      fq->pid = p->pid;
+      if(_uptime() - _100ticks >= 100)
+      {
+      //priority boosting
+        release(&ptable.lock);
+        cur_level = 0;
+        setlev_to0();
+        acquire(&ptable.lock);
+        _100ticks = _uptime();
+      }
+      if(p->state != RUNNABLE)
+        continue;
+      // Switch to chosen process.  It is the process's job
+      // to release ptable.lock and then reacquire it
+      // before jumping back to us.
+      if(fq->level != cur_level)
+        continue;
+      if(fq->ticks > (cur_level<<1) + 4)
+          continue;
+      if(max_priority > fq->priority)
+        continue;
+
+      ch = 1;
+      max_priority = fq->priority;
+      _p = p;
+      _fq = fq;
+    }
+    if(ch)
+    {
+      //uint pev_ticks = _uptime();
+      
+      p = _p;
+      c->proc = p;
+      switchuvm(p);
       p->state = RUNNING;
-      swtch(&(c->scheduler), _p->context);
+      swtch(&(c->scheduler), p->context);
       switchkvm();
       // Process is done running for now.
       // It should have changed its p->state before coming back.
+
+
+      // uint tmp = _uptime();
+      // _fq->ticks+= tmp-pev_ticks;
+      // pev_ticks = tmp;
+
+      _fq->ticks++;
       c->proc = 0;
-      release(&ptable.lock);
-  }
-  else
-  {
-    // 특정 큐가 time quantum을 소모했을 경우
-    cur_level++;
-    release(&ptable.lock);
-    if(MLFQ_K == cur_level) 
-    {
-      // 모든 큐가 time quantum을 소모했을 경우
-      cur_level = 0;
-      setlev_to0();
-      continue;
     }
-    setlev_toDown(cur_level-1);
-  }
-   
-   
+    else
+    {
+      //panic("over");
+      cur_level++;
+      if(MLFQ_K == cur_level) 
+      {
+      // 모든 큐가 time quantum을 소모했을 경우
+        release(&ptable.lock);
+        cur_level = 0;
+        setlev_to0();
+        acquire(&ptable.lock);
+      }
+      else
+      {
+        char _ch = 0;
+        struct _mlfq * __fq;
+        for(__fq = mlfq; __fq < & mlfq[NPROC]; __fq++)
+        {
+          if(__fq->level != cur_level-1)
+            continue;
+          if(__fq->ticks < 1)
+          {
+            ;
+            //_ch = 1;
+          }
+            
+        }
+        if(_ch) 
+        {
+          cur_level--;
+          continue;
+        }
+        else
+        {
+          release(&ptable.lock);
+          setlev_toDown(cur_level-1);
+          acquire(&ptable.lock);
+        }
+        
+      }
+      
+    }
+    release(&ptable.lock);
   }
 #endif
 #endif
@@ -563,6 +635,7 @@ yield(void)
   myproc()->state = RUNNABLE;
   sched();
   release(&ptable.lock);
+  
 }
 // A fork child's very first scheduling by scheduler()
 // will swtch here.  "Return" to user space.

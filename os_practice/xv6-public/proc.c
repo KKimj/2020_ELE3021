@@ -337,18 +337,16 @@ getlev(void)
 {
   int lev = -1;
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
-  struct proc *p;
-  struct _mlfq * fq;
   struct proc * _p = myproc();
+  struct _mlfq * fq;
 
-  acquire(&ptable.lock);
-  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
     if(_p->pid == fq->pid)
     {
       lev = fq->level;
     }
   }
-  release(&ptable.lock);
   return lev;
 }
 //TODO setpriority

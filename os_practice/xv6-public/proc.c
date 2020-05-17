@@ -468,6 +468,8 @@ scheduler(void)
 
   for(;;){
     // Enable interrupts on this processor.
+    ch = 0;
+    max_priority = -1;
     sti();
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
@@ -508,6 +510,7 @@ scheduler(void)
     }
     else
     {
+      panic("over");
       cur_level++;
       if(MLFQ_K == cur_level) 
       {

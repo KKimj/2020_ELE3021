@@ -332,6 +332,19 @@ void setlev_toDown(int curlevel)
   }
   release(&ptable.lock);
 }
+
+int is0timequantum(int curlevel)
+{
+  struct _mlfq * fq;
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
+    if(fq->level != curlevel)
+      continue;
+    if(fq->ticks < (curlevel<<1)+4 )
+      return 0;
+  }
+  return 1;
+}
 //TODO getlev
 int
 getlev(void)
@@ -552,9 +565,17 @@ scheduler(void)
       }
       else
       {
-        release(&ptable.lock);
-        setlev_toDown(cur_level-1);
-        acquire(&ptable.lock);
+        if(is0timequantum(cur_level-1))
+        {
+          release(&ptable.lock);
+          setlev_toDown(cur_level-1);
+          acquire(&ptable.lock);
+        }
+        else
+        {
+          cur_level--;
+        }
+        
       }
       
     }

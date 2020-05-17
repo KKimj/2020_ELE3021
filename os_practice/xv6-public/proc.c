@@ -570,15 +570,25 @@ scheduler(void)
       }
       else
       {
-        if(is0timequantum(cur_level-1))
+        char _ch = 0;
+        struct _mlfq * __fq;
+        for(fq = mlfq; __fq < & mlfq[NPROC]; __fq++)
+        {
+          if(__fq->level != cur_level-1)
+            continue;
+          if(__fq->ticks < 3)
+            _ch = 1;
+        }
+        if(_ch) 
+        {
+          cur_level--;
+          continue;
+        }
+        else
         {
           release(&ptable.lock);
           setlev_toDown(cur_level-1);
           acquire(&ptable.lock);
-        }
-        else
-        {
-          cur_level--;
         }
         
       }

@@ -78,7 +78,9 @@ sys_sleep(void)
     sleep(&ticks, &tickslock);
   }
   release(&tickslock);
-  
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
   return 0;
 }
 

@@ -525,7 +525,7 @@ scheduler(void)
       // before jumping back to us.
       if(fq->level != cur_level)
         continue;
-      if(fq->ticks >= (cur_level<<1) + 4)
+      if(fq->ticks > (cur_level<<1) + 4)
           continue;
       if(max_priority > fq->priority)
         continue;

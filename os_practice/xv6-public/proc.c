@@ -317,11 +317,82 @@ wait(void)
 // added by Kim Jiun
 // To hw-1
 
+
+
+//PAGEBREAK: 42
+// Per-CPU process scheduler.
+// Each CPU calls scheduler() after setting itself up.
+// Scheduler never returns.  It loops, doing:
+//  - choose a process to run
+//  - swtch to start running that process
+//  - eventually that process transfers control
+//      via swtch back to the scheduler.
+#ifdef MLFQ_SCHED
+int _uptime(void)
+{
+  uint xticks;
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+  return xticks;
+}
+
+struct _mlfq
+{
+  struct proc *p;
+  int pid;
+  int priority;
+  int level;
+  
+} mlfq[NPROC]; 
+
+void setlev_to0(void)
+{
+  struct proc *p;
+  struct cpu *c = mycpu();
+  c->proc = 0;
+
+  
+  struct _mlfq * fq;
+  cli();
+  acquire(&ptable.lock);
+  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+    fq->pid = p->pid;
+    fq->level = 0;
+  }
+  release(&ptable.lock);
+}
+
+#endif
+
+
 //TODO getlev
 int
 getlev(void)
 {
-  int lev = 1;
+  int lev = -1;
+
+  struct proc *p_ = myproc();
+  //p_->pid;
+
+  // ptbale 과 mlfq의 pid를 비교하여, level 반환
+
+  struct proc *p;
+  struct cpu *c = mycpu();
+  c->proc = 0;
+
+  
+  struct _mlfq * fq;
+  cli();
+  acquire(&ptable.lock);
+  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+    if(p->pid == fq->pid)
+    {
+      lev = fq->level;
+    }
+  }
+  release(&ptable.lock);
+
 
   return lev;
 }
@@ -354,33 +425,6 @@ int setpriority(int pid, int priority)
   if(ch) return 0;
   return -1;
 }
-
-
-//PAGEBREAK: 42
-// Per-CPU process scheduler.
-// Each CPU calls scheduler() after setting itself up.
-// Scheduler never returns.  It loops, doing:
-//  - choose a process to run
-//  - swtch to start running that process
-//  - eventually that process transfers control
-//      via swtch back to the scheduler.
-#ifdef MLFQ_SCHED
-int _uptime(void)
-{
-  uint xticks;
-  acquire(&tickslock);
-  xticks = ticks;
-  release(&tickslock);
-  return xticks;
-}
-
-struct mlfq
-{
-  struct proc *p;
-  int priority;
-  struct mlfq *next;
-}; 
-#endif
 
 void
 scheduler(void)
@@ -489,26 +533,56 @@ scheduler(void)
 struct proc *p;
 struct cpu *c = mycpu();
 c->proc = 0;
-  
+
+struct _mlfq * fq;
+
+int cur_level = 0;
+uint _ticks;
+uint _pev_ticks = _uptime();
 for(;;)
 {
-  // 100 ticks 마다 초기화
+  
   sti();
-  // interrupt로 처리해야 한다.
+  // 100 ticks 마다 초기화
   if(_uptime() % 100 == 0)
   {
-    panic("uptime % 100 == 0 ");
     //priority boosting
+    cur_level = 0;
+    setlev_to0();
+    _ticks = 0;
+    _pev_ticks = _uptime();
   }
-  acquire(&ptable.lock);
-    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
-        continue;
 
-      // Switch to chosen process.  It is the process's job
-      // to release ptable.lock and then reacquire it
-      // before jumping back to us.
-      c->proc = p;
+  // 모든 큐가 time quantum을 소모했을 경우
+  if(MLFQ_K<=cur_level)
+  {
+    continue;
+  }
+
+  // 특정 큐의 time quantum을 다 소모했을 경우
+  uint tmp_ticks = uptime();
+  _ticks += tmp_ticks - _pev_ticks;
+  _pev_ticks = tmp_ticks;
+
+  if(_ticks >= cur_level<<1+4)
+  {
+    cur_level ++;
+    _ticks = 0;
+  }
+
+  
+  acquire(&ptable.lock);
+  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+    
+    fq->pid = p->pid;
+
+    if(p->state != RUNNABLE)
+        continue;
+    
+    if(fq->level > cur_level)
+        continue;
+    
+    c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
 
@@ -518,7 +592,10 @@ for(;;)
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
-    }
+
+    
+
+  }
   release(&ptable.lock);
 
 

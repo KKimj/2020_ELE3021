@@ -365,6 +365,14 @@ int setpriority(int pid, int priority)
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
 #ifdef MLFQ_SCHED
+extern int uptime(void);
+
+/*
+acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+  */
+
 struct mlfq
 {
   struct proc *p;
@@ -486,8 +494,9 @@ for(;;)
   // 100 ticks 마다 초기화
   sti();
   // interrupt로 처리해야 한다.
-  //if(uptime() % 100 == 0)
+  if(uptime() % 100 == 0)
   {
+    panic("uptime % 100 == 0 ");
     //priority boosting
   }
   acquire(&ptable.lock);

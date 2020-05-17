@@ -585,8 +585,6 @@ scheduler(void)
     }
     release(&ptable.lock);
   }
-   
-  }
 #endif
 #endif
 }

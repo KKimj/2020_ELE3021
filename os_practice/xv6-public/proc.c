@@ -546,7 +546,7 @@ scheduler(void)
   //panic("before get in to for loop");
 
   setlev_to0();
-  panic("after setlev_0 function");
+  //panic("after setlev_0 function");
 
   for(;;)
   {
@@ -572,7 +572,7 @@ scheduler(void)
 
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-    
+    panic("loop in ptable");
     fq->pid = p->pid;
 
     if(p->state != RUNNABLE)

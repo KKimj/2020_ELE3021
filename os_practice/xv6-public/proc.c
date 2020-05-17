@@ -493,7 +493,9 @@ scheduler(void)
       _p = p;
       _fq = fq;
     }
+    if(ch)
     {
+      _fq->ticks++;
       p = _p;
       c->proc = p;
       switchuvm(p);
@@ -503,6 +505,25 @@ scheduler(void)
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
+    }
+    else
+    {
+      cur_level++;
+      if(MLFQ_K == cur_level) 
+      {
+      // 모든 큐가 time quantum을 소모했을 경우
+        release(&ptable.lock);
+        cur_level = 0;
+        setlev_to0();
+        acquire(&ptable.lock);
+      }
+      else
+      {
+        release(&ptable.lock);
+        setlev_toDown(cur_level-1);
+        acquire(&ptable.lock);
+      }
+      
     }
     release(&ptable.lock);
   }

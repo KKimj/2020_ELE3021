@@ -335,6 +335,7 @@ void setlev_toDown(int curlevel)
 
 int is0timequantum(int curlevel)
 {
+  return 1;
   struct _mlfq * fq;
   for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
   {

@@ -478,7 +478,7 @@ scheduler(void)
   sti();
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-    panic("loop in ptable");
+    
     fq->pid = p->pid;
     if(p->state != RUNNABLE)
         continue;
@@ -490,6 +490,8 @@ scheduler(void)
     
     if(max_priority > fq->priority)
         continue;
+
+    panic("found out p");
     ch = 1;
     max_priority = fq->priority;
     _p = p;

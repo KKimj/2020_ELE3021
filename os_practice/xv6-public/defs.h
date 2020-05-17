@@ -125,7 +125,6 @@ void            yield(void);
 int             getlev(void);
 int             setpriority(int pid, int priority);
 
-
 // swtch.S
 void            swtch(struct context**, struct context*);
 

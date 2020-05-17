@@ -86,14 +86,12 @@ xv6.img: bootblock kernel
 	dd if=/dev/zero of=xv6.img count=10000
 	dd if=bootblock of=xv6.img conv=notrunc
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
-
 ifdef SCHED_POLICY
 CFLAGS += -D SCHED_POLICY -D $(SCHED_POLICY)
 ifeq ($(SCHED_POLICY), MLFQ_SCHED)
 CFLAGS += -D MLFQ_K=$(MLFQ_K)
 endif
 endif
-
 xv6memfs.img: bootblock kernelmemfs
 	dd if=/dev/zero of=xv6memfs.img count=10000
 	dd if=bootblock of=xv6memfs.img conv=notrunc
@@ -169,7 +167,6 @@ UPROGS=\
 	_zombie\
 	_ml_test\
 	_mlfq_test\
-	_hw_test\
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
 -include *.d
@@ -222,7 +219,7 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 EXTRA=\
 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
 	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
-	printf.c umalloc.c ml_test.c mlfq_test.c hw_test.c\
+	printf.c umalloc.c ml_test.c mlfq_test.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 dist:

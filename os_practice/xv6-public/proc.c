@@ -510,7 +510,7 @@ scheduler(void)
     }
     else
     {
-      panic("over");
+      //panic("over");
       cur_level++;
       if(MLFQ_K == cur_level) 
       {

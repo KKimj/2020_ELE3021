@@ -571,7 +571,7 @@ scheduler(void)
       else
       {
         char _ch = 0;
-        struct _mlfq * __fq;
+        struct _mlfq * __fq = 0;
         for(fq = mlfq; __fq < & mlfq[NPROC]; __fq++)
         {
           if(__fq->level != cur_level-1)

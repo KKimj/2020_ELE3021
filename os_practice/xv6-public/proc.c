@@ -538,7 +538,7 @@ scheduler(void)
     if(ch)
     {
       //uint pev_ticks = _uptime();
-      _fq->ticks++;
+      
       p = _p;
       c->proc = p;
       switchuvm(p);
@@ -553,7 +553,7 @@ scheduler(void)
       // _fq->ticks+= tmp-pev_ticks;
       // pev_ticks = tmp;
 
-
+      _fq->ticks++;
       c->proc = 0;
     }
     else

@@ -542,6 +542,9 @@ scheduler(void)
   struct _mlfq * fq;
 
   int cur_level = 0;
+
+  panic("before get in to for loop");
+
   setlev_to0();
 
   for(;;)

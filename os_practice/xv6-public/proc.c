@@ -294,14 +294,15 @@ void setticks_to0(void)
   struct proc * _p = myproc();
   struct proc *p;
   struct _mlfq * fq;
-  acquire(&ptable.lock);
-  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+
+  for(fq = mlfq; fq < & mlfq[NPROC]; fq++)
+  {
     if(_p->pid == fq->pid)
     {
       //fq->ticks = 0;
     }
   }
-  release(&ptable.lock);
+  
 }
 
 void setlev_to0(void)

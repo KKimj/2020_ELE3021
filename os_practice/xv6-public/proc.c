@@ -477,7 +477,7 @@ scheduler(void)
       //priority boosting
       release(&ptable.lock);
         cur_level = 0;
-        //setlev_to0();
+        setlev_to0();
       acquire(&ptable.lock);
       }
       if(p->state != RUNNABLE)

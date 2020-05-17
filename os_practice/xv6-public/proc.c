@@ -557,22 +557,17 @@ c->proc = 0;
 struct _mlfq * fq;
 
 int cur_level = 0;
-uint _ticks = 0;
 setlev_to0();
 
-
-uint _pev_ticks = _uptime();
 for(;;)
 {
   // 100 ticks 마다 초기화
   if(_uptime() % 100 == 0)
   {
     //priority boosting
-   cli();
-	cur_level = 0;
+    cli();
+	  cur_level = 0;
     setlev_to0();
-    _ticks = 0;
-    _pev_ticks = _uptime();
    
     // panic("100 ticks");
   }

@@ -472,6 +472,12 @@ scheduler(void)
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
     for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+      if(_uptime() % 100 == 0)
+      {
+      //priority boosting
+        cur_level = 0;
+        setlev_to0();
+      }
       if(p->state != RUNNABLE)
         continue;
       // Switch to chosen process.  It is the process's job

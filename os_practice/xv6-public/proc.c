@@ -288,6 +288,22 @@ struct _mlfq
   int level;
   uint ticks;
 } mlfq[NPROC]; 
+
+void setticks_to0(void)
+{
+  struct proc * _p = myproc();
+  struct proc *p;
+  struct _mlfq * fq;
+  acquire(&ptable.lock);
+  for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
+    if(_p->pid == fq->pid)
+    {
+      fq->ticks = 0;
+    }
+  }
+  release(&ptable.lock);
+}
+
 void setlev_to0(void)
 {
   struct proc *p;
@@ -304,6 +320,7 @@ void setlev_toDown(int curlevel)
 {
   struct proc *p;
   struct _mlfq * fq;
+
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
     if(fq->level != curlevel)
@@ -322,9 +339,11 @@ getlev(void)
   // ptbale 과 mlfq의 pid를 비교하여, level 반환
   struct proc *p;
   struct _mlfq * fq;
+  struct proc * _p = myproc();
+
   acquire(&ptable.lock);
   for(p = ptable.proc, fq = mlfq; p < &ptable.proc[NPROC]; p++, fq++){
-    if(p->pid == fq->pid)
+    if(_p->pid == fq->pid)
     {
       lev = fq->level;
     }
@@ -640,10 +659,14 @@ sched(void)
 void
 yield(void)
 {
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
   acquire(&ptable.lock);  //DOC: yieldlock
   myproc()->state = RUNNABLE;
   sched();
   release(&ptable.lock);
+  
 }
 // A fork child's very first scheduling by scheduler()
 // will swtch here.  "Return" to user space.
@@ -668,6 +691,9 @@ forkret(void)
 void
 sleep(void *chan, struct spinlock *lk)
 {
+  #ifdef MLFQ_SCHED
+  setticks_to0();
+  #endif
   struct proc *p = myproc();
   
   if(p == 0)

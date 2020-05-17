@@ -533,7 +533,7 @@ c->proc = 0;
 struct _mlfq * fq;
 
 int cur_level = 0;
-uint _ticks;
+uint _ticks = 0;
 uint _pev_ticks = _uptime();
 for(;;)
 {

@@ -298,7 +298,7 @@ void setticks_to0(void)
   {
     if(_p->pid == fq->pid)
     {
-      //fq->ticks = 0;
+      fq->ticks = 0;
     }
   }
   
@@ -664,9 +664,6 @@ sched(void)
 void
 yield(void)
 {
-  #ifdef MLFQ_SCHED
-  setticks_to0();
-  #endif
   acquire(&ptable.lock);  //DOC: yieldlock
   myproc()->state = RUNNABLE;
   sched();
@@ -696,9 +693,6 @@ forkret(void)
 void
 sleep(void *chan, struct spinlock *lk)
 {
-  #ifdef MLFQ_SCHED
-  setticks_to0();
-  #endif
   struct proc *p = myproc();
   
   if(p == 0)

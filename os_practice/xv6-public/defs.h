@@ -120,6 +120,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+void            setticks_to0(void);
 
 // added by Kim Jiun
 int             getlev(void);

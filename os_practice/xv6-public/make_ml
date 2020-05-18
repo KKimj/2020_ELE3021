@@ -1,4 +1,0 @@
-make clean
-make SCHED_POLICY=MULTILEVEL_SCHED
-make fs.img
-./run.sh

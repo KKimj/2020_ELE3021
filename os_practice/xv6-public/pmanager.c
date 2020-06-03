@@ -23,9 +23,9 @@ main(int argc, char *argv[])
     getadmin(passwd);
 
     char * path = "./cat";
-    char * argv[] = {"Hello", "World!"};
+    char * argv_[] = {"Hello", "World!"};
     int stacksize = 0;
-    exec2(path, argv, stacksize);
+    exec2(path, argv_, stacksize);
 
     int pid = 0;
     int limit = 0;

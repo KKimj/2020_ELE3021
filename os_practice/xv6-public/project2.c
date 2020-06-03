@@ -80,18 +80,16 @@ int exec2(char *path, char **argv, int stacksize)
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "setm Start!");
+    cprintf("%s\n", "setmlit Start!");
     #endif
 
-
-#undef VERBOS
     if(1) // setmemory limit fail
     {
         return -1;
     }
 
     #ifdef VERBOS
-    cprintf("%s\n", "setmemorylimit exit!");
+    cprintf("%s\n", "setmlit exit!");
     #endif
     return 0; // setmemory limit success
 }

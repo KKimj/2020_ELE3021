@@ -1,7 +1,7 @@
 #include "types.h"
 #include "defs.h"
 
-#define VERBOS
+//#define VERBOS
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);

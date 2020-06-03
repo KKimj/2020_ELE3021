@@ -76,7 +76,7 @@ int exec2(char *path, char **argv, int stacksize)
     return 0; // exec2 success
 }
 
-
+#undef VERBOS
 
 int setmemorylimit(int pid, int limit)
 {

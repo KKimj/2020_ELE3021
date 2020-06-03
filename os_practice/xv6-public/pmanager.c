@@ -5,8 +5,8 @@
 int
 main(int argc, char *argv[])
 {
-    char *buf = "Hello Pmanager.c";
-    int ret_val;
+    // char *buf = "Hello Pmanager.c";
+    // int ret_val;
 
     printf(1, "Pmanager Start!\n");
 

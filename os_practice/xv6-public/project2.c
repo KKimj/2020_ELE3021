@@ -43,7 +43,7 @@ sys_getshmem(void)
 int getadmin(char *password)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "getadmin Start!");
+    cprintf("%s\n", "getadm Start!");
     #endif
 
     if(1)  // login fail
@@ -52,7 +52,7 @@ int getadmin(char *password)
     }
 
     #ifdef VERBOS
-    cprintf("%s\n", "getadmin exit!");
+    cprintf("%s\n", "getadm exit!");
     #endif
     return 0; // login success
 }

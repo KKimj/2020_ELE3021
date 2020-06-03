@@ -98,12 +98,12 @@ char * getshmem(int pid)
     char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
-    cprintf("%s\n", "getshmem Start!");
+    cprintf("%s\n", "getshm Start!");
     #endif
 
 
     #ifdef VERBOS
-    cprintf("%s\n", "getshmem exit!");
+    cprintf("%s\n", "getshm exit!");
     #endif
     return ret_val;
 }

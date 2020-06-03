@@ -37,7 +37,7 @@ int
 sys_getshmem(void)
 {
     int pid = 0;
-    return getshmem(pid);
+    return getshmem(pid), 0;
 }
 
 

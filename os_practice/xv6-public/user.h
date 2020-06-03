@@ -37,3 +37,9 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
+
+// project2.c
+int getadmin(char *password);
+int exec2(char *path, char **argv, int stacksize);
+int setmemorylimit(int pid, int limit);
+char * getshmem(int pid); 

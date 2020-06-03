@@ -20,3 +20,7 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
+#define SYS_getadmin 22
+#define SYS_exec2  23
+#define SYS_setmemorylimit 24
+#define SYS_getshmem 25

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-//#define VERBOS
+#define VERBOS
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -56,6 +56,8 @@ int getadmin(char *password)
     #endif
     return 0; // login success
 }
+
+#undef VERBOS
 
 int exec2(char *path, char **argv, int stacksize)
 {

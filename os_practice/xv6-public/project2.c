@@ -61,7 +61,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "exec2 Start!");
+    cprintf("%s\n", "exec Start!");
     #endif
 
 #undef VERBOS

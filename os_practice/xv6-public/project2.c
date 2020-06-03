@@ -1,6 +1,5 @@
 #include "types.h"
 #include "stat.h"
-#include "user.h"
 
 #define VERBOS
 
@@ -45,7 +44,7 @@ sys_getshmem(void)
 int getadmin(char *password)
 {
     #ifdef VERBOS
-    printf(1, "getadmin Start!\n");
+    cprintf("getadmin Start!\n");
     #endif
 
     if(1)  // login fail
@@ -54,7 +53,7 @@ int getadmin(char *password)
     }
 
     #ifdef VERBOS
-    printf(1, "getadmin exit!\n");
+    cprintf("getadmin exit!\n");
     #endif
     return 0; // login success
 }
@@ -62,7 +61,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     #ifdef VERBOS
-    printf(1, "exec2 Start!\n");
+    cprintf("exec2 Start!\n");
     #endif
 
     if(1) // exec2 fail
@@ -71,14 +70,14 @@ int exec2(char *path, char **argv, int stacksize)
     }
 
     #ifdef VERBOS
-    printf(1, "exec2 exit!\n");
+    cprintf("exec2 exit!\n");
     #endif
     return 0; // exec2 success
 }
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOS
-    printf(1, "setmemorylimit Start!\n");
+    cprintf("setmemorylimit Start!\n");
     #endif
 
     if(1) // setmemory limit fail
@@ -87,7 +86,7 @@ int setmemorylimit(int pid, int limit)
     }
 
     #ifdef VERBOS
-    printf(1, "setmemorylimit exit!\n");
+    cprintf("setmemorylimit exit!\n");
     #endif
     return 0; // setmemory limit success
 }
@@ -96,12 +95,12 @@ char * getshmem(int pid)
     char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
-    printf(1, "getshmem Start!\n");
+    cprintf("getshmem Start!\n");
     #endif
 
 
     #ifdef VERBOS
-    printf(1, "getshmem exit!\n");
+    cprintf("getshmem exit!\n");
     #endif
     return ret_val;
 }

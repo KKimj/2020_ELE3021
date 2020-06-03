@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-#define VERBOS
+//#define VERBOS
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -42,18 +42,18 @@ sys_getshmem(void)
 
 int getadmin(char *password)
 {
-    #ifdef VERBOS
-    cprintf("getadmin Start!\n");
-    #endif
+    // #ifdef VERBOS
+    cprintf("%s\n", "getadmin Start!");
+    // #endif
 
     if(1)  // login fail
     {
         return -1;
     }
 
-    #ifdef VERBOS
-    cprintf("getadmin exit!\n");
-    #endif
+    // #ifdef VERBOS
+    cprintf("%s", "getadmin exit!\n");
+    // #endif
     return 0; // login success
 }
 

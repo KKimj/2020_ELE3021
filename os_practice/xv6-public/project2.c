@@ -1,5 +1,5 @@
 #include "types.h"
-#include "stat.h"
+#include "defs.h"
 
 #define VERBOS
 

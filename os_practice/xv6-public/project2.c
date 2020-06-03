@@ -57,7 +57,6 @@ int getadmin(char *password)
     return 0; // login success
 }
 
-#undef VERBOS
 
 int exec2(char *path, char **argv, int stacksize)
 {
@@ -75,6 +74,10 @@ int exec2(char *path, char **argv, int stacksize)
     #endif
     return 0; // exec2 success
 }
+
+
+#undef VERBOS
+
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOS

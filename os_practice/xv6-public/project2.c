@@ -92,7 +92,7 @@ int setmemorylimit(int pid, int limit)
 }
 char * getshmem(int pid)
 {
-    char * ret_val = 0xFFFFFFFF;
+    char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
     printf(1, "getshmem Start!\n");

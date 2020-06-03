@@ -76,7 +76,6 @@ int exec2(char *path, char **argv, int stacksize)
     return 0; // exec2 success
 }
 
-#undef VERBOS
 
 int setmemorylimit(int pid, int limit)
 {
@@ -84,6 +83,8 @@ int setmemorylimit(int pid, int limit)
     cprintf("%s\n", "setmemorylimit Start!");
     #endif
 
+
+#undef VERBOS
     if(1) // setmemory limit fail
     {
         return -1;

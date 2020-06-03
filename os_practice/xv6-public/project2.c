@@ -64,6 +64,8 @@ int exec2(char *path, char **argv, int stacksize)
     cprintf("%s\n", "exec2 Start!");
     #endif
 
+#undef VERBOS
+
     if(1) // exec2 fail
     {
         return -1;
@@ -76,7 +78,6 @@ int exec2(char *path, char **argv, int stacksize)
 }
 
 
-#undef VERBOS
 
 int setmemorylimit(int pid, int limit)
 {

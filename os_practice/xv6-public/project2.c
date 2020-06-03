@@ -52,7 +52,7 @@ int getadmin(char *password)
     }
 
     #ifdef VERBOS
-    cprintf("%s", "getadmin exit!\n");
+    cprintf("%s\n", "getadmin exit!");
     #endif
     return 0; // login success
 }
@@ -60,7 +60,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     #ifdef VERBOS
-    cprintf("%s", "exec2 Start!\n");
+    cprintf("%s\n", "exec2 Start!");
     #endif
 
     if(1) // exec2 fail
@@ -69,14 +69,14 @@ int exec2(char *path, char **argv, int stacksize)
     }
 
     #ifdef VERBOS
-    cprintf("%s", "exec2 exit!\n");
+    cprintf("%s\n", "exec2 exit!");
     #endif
     return 0; // exec2 success
 }
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOS
-    cprintf("%s", "setmemorylimit Start!\n");
+    cprintf("%s\n", "setmemorylimit Start!");
     #endif
 
     if(1) // setmemory limit fail
@@ -85,7 +85,7 @@ int setmemorylimit(int pid, int limit)
     }
 
     #ifdef VERBOS
-    cprintf("%s", "setmemorylimit exit!\n");
+    cprintf("%s\n", "setmemorylimit exit!");
     #endif
     return 0; // setmemory limit success
 }
@@ -94,12 +94,12 @@ char * getshmem(int pid)
     char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
-    cprintf("%s", "getshmem Start!\n");
+    cprintf("%s\n", "getshmem Start!");
     #endif
 
 
     #ifdef VERBOS
-    cprintf("%s", "getshmem exit!\n");
+    cprintf("%s\n", "getshmem exit!");
     #endif
     return ret_val;
 }

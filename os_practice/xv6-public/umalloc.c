@@ -5,6 +5,8 @@
 // Memory allocator by Kernighan and Ritchie,
 // The C programming Language, 2nd ed.  Section 8.7.
 
+//#define VERBOSE
+
 typedef long Align;
 
 union header {
@@ -58,8 +60,6 @@ morecore(uint nu)
   free((void*)(hp + 1));
   return freep;
 }
-
-#define VERBOSE
 
 void*
 malloc(uint nbytes)

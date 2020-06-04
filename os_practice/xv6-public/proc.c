@@ -592,12 +592,14 @@ int setmemorylimit(int pid, int limit)
         if(p->sz > limit)
         {
           release(&ptable.lock);
+          // setmemory limit Fail
           return -1;
         }
         else 
         {
           p->memlim = limit;
           release(&ptable.lock);
+          // setmemory limit Success
           return 0;
         }
       }

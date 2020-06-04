@@ -9,7 +9,7 @@
 // int setmemorylimit(int pid, int limit);
 // char * getshmem(int pid); 
 
-#define VERBOSE
+//#define VERBOSE
 //#define DEV
 
 

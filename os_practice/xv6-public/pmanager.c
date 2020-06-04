@@ -144,7 +144,7 @@ parsecmd(char *s)
   printf(2, "cmd string-> %s", s);
   #endif
 
-  if(len == 4)
+  if(len <= 5)
   {
       if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
       {

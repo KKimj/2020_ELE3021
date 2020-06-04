@@ -63,15 +63,28 @@ struct backcmd {
   struct cmd *cmd;
 };
 
+char whitespace[] = " \t\r\n\v";
+char symbols[] = "<|>&;()";
+
+char* strchr(const char *s, char c);
 
 int getcmd(char *buf, int nbuf);
 struct cmd* parsecmd(char *s);
 void runcmd(struct cmd *cmd);
 
+int isCmdEnd(char *s);
+int getCmdInt(char *s);
+char* getCmdString(char *s, char *d);
 
 struct cmd cmd;
+int cmd_argc;
+char cmd_argvchar0[100];
+char cmd_argvchar1[100];
+char cmd_argvchar2[100];
+char * cmd_argv[3];
+int cmd_argvint0;
+int cmd_argvint1;
 
-int
 main(int argc, char *argv[])
 {
     #ifdef VERBOSE
@@ -222,3 +235,54 @@ runcmd(struct cmd *cmd)
   }
   exit();
 }
+
+
+
+char*
+strchr(const char *s, char c)
+{
+  for(; *s; s++)
+    if(*s == c)
+      return (char*)s;
+  return 0;
+}
+
+
+int isCmdEnd(char *s)
+{
+  if(s[0] == 0) return 1;
+  while(strchr(whitespace, *s)) 
+    s++;
+  return s[0] == 0;
+}
+
+int getCmdInt(char *s)
+{
+  while(strchr(whitespace, *s)) 
+    s++;
+  
+  int ret = (int)( *(s++) - 48);
+
+  while(!strchr(whitespace, *s))
+  {
+    ret *= 10;
+    ret += (int)( *(s++) - 48);
+  }
+
+  while(strchr(whitespace, *s)) 
+    s++;
+  return ret;
+}
+char* getCmdString(char *s, char *d)
+{
+  while(strchr(whitespace, *s)) 
+    s++;
+
+  while(!strchr(whitespace, *s))
+    *(d++) = *(s++);
+
+  while(strchr(whitespace, *s)) 
+    s++;
+  return s;
+}
+

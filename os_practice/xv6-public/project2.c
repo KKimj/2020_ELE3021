@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-//#define VERBOSE
+#define VERBOSE
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -89,20 +89,21 @@ int getadmin(char *password)
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
-    
-    // while(*password != *key)
-    // {
-    //     if(*key=='9')
-    //         break;
-    //     password++, key++;
-    // }
-    // if(*key!='9')  // login fail
-    // {
-    //     return -1;
-    // }
-    // #ifdef VERBOSE
-    // cprintf("%s%s\n", msg_getadmin, msg_exit);
-    // #endif
+
+    char *_key = key;
+    while(*password != *_key)
+    {
+        if(*key=='9')
+            break;
+        password++, _key++;
+    }
+    if(*key!='9')  // login fail
+    {
+        return -1;
+    }
+    #ifdef VERBOSE
+    cprintf("%s%s\n", msg_getadmin, msg_exit);
+    #endif
     return 0; // login success
 }
 

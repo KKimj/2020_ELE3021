@@ -131,7 +131,7 @@ main(int argc, char *argv[])
             // wait();
             exit();
         }
-        wait();
+        // wait();
         sleep(10);
         if(cmd.type == _EXIT)
         {
@@ -291,9 +291,10 @@ runcmd(struct cmd *cmd)
         exit();
         break;
     default:
+        cmd->type = -1;
         printf(2, "Input Error!!\n");
   }
-  cmd->type = -1;
+  
   exit();
 }
 

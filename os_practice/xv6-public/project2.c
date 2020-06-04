@@ -8,8 +8,8 @@ int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
 #ifdef VERBOS
-char * msg_start = " Start!";
-char * msg_exit = " Exit!";
+char * msg_start = "Start";
+char * msg_exit = "Exit";
 char * msg_getadmin = "GetAdm";
 char * msg_exec2 = "ExecTw";
 char * msg_setmemorylimit = "SetMLmt";

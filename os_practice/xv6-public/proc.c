@@ -547,7 +547,7 @@ procdump(void)
 
 #ifdef PROJECT2
 
-#define VERBOSE
+//#define VERBOSE
 
 void
 list(void)

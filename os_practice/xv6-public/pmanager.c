@@ -130,7 +130,7 @@ main(int argc, char *argv[])
             #endif
         }
         // wait();
-        // sleep(10);
+        sleep(15);
         if(cmd.type == _EXIT)
         {
             #ifdef VERBOSE

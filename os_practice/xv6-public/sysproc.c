@@ -240,7 +240,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     myproc()->stacksize = stacksize;
-    return exec(path, argv);; // exec2 success
+    return exec(path, argv); // exec2 success
 }
 
 char * getshmem(int pid)

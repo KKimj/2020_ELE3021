@@ -549,7 +549,7 @@ list(void)
   {
     if(p->sz == 0) continue;
     if(p->state != RUNNING) continue;
-    cprintf("%s             %d         %d               %d                %d    %s\n", p->name, p->pid, 12, p->sz, 23, (1?"ON":"OFF") );
+    cprintf("%s       %d         %d             %d             %d    %s\n", p->name, p->pid, 12, p->sz, 23, (1?"ON":"OFF") );
   }
 
   #ifdef VERBOSE

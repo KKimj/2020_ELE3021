@@ -555,8 +555,7 @@ list(void)
   #ifdef VERBOSE
   cprintf("list function Start!\n");
   #endif
-  // printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)   | ADMIN_MODE\n");
-
+  // printf(1, "NAME       | PID |   TIME  (ms)  |   MEMORY  (bytes) |   MEMLIM(bytes)   |   STACK SIZE    |   ADMIN_MODE\n");
   acquire(&tickslock);
   uint now = ticks;
   release(&tickslock);
@@ -565,7 +564,7 @@ list(void)
   {
     if(p->sz == 0) continue;
     if(p->state != RUNNING) continue;
-    cprintf("%s       %d         %d             %d             %d    %s\n", p->name, p->pid, now-p->upticks, p->sz, p->memlim, (p->mode == ADMIN?"ON":"OFF") );
+    cprintf("%s       %d         %d             %d             %d         %d      %s\n", p->name, p->pid, now-p->upticks, p->sz, p->memlim, p->stacksize,(p->mode == ADMIN?"ON":"OFF") );
   }
 
   #ifdef VERBOSE

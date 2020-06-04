@@ -96,8 +96,8 @@ int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOSE
     // cprintf("%s%s", msg_setmemorylimit, msg_start);
-    // cprintf("pid %d limit %d\n", pid, limit);
-    // cprintf("\n");
+    cprintf("pid %d limit %d\n", pid, limit);
+    cprintf("\n");
 
     #endif
 

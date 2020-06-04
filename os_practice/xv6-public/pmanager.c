@@ -33,12 +33,12 @@ main(int argc, char *argv[])
     setmemorylimit(pid, limit);
 
     getshmem(pid);
-    char * argv_dev[] = {"cat", "echo!"};
+    // char * argv_dev[] = {"cat", "echo!"};
     //exec("cat", argv_dev);
     //exec("pmanager", argv_dev);
     #endif
 
-    static char buf[100];
+    // static char buf[100];
     int fd;
     // Ensure that three file descriptors are open.
     while((fd = open("console", O_RDWR)) >= 0){

@@ -82,6 +82,17 @@ argstr(int n, char **pp)
   return fetchstr(addr, pp);
 }
 
+
+int
+sys_malloc(void)
+{
+  uint u;
+  if(argint(0,(int *)&u) < 0)
+    return -1;
+
+  malloc(u);
+}
+
 extern int sys_chdir(void);
 extern int sys_close(void);
 extern int sys_dup(void);

@@ -3,16 +3,6 @@
 #include "user.h"
 
 
-int
-sys_malloc(void)
-{
-  uint u;
-  if(argint(0,(int *)&u) < 0)
-    return -1;
-
-  malloc(u);
-}
-
 #ifdef PROJECT2
 // #include "proc.h"
 #define VERBOSE

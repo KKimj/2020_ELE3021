@@ -127,7 +127,8 @@ main(int argc, char *argv[])
         parsecmd(buf);
         if(fork() == 0)
             runcmd(&cmd);
-        wait();
+        //wait();
+        sleep(100);
         if(cmd.type == _EXIT)
         {
             exit();

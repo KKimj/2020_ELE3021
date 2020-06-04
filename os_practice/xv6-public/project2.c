@@ -10,9 +10,9 @@ char * getshmem(int pid);
 #ifdef VERBOS
 char * msg_start = "Start";
 char * msg_exit = "Exit";
-char * msg_getadmin = "GetAdm";
+char * msg_getadmin = "GetAd";
 char * msg_exec2 = "ExeTw";
-char * msg_setmemorylimit = "SetMLmt";
+char * msg_setmemorylimit = "SetML";
 char * msg_getshmem = "GetShM";
 #endif
 

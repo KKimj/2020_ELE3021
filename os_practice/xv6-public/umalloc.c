@@ -71,7 +71,7 @@ malloc(uint nbytes)
   Header *p, *prevp;
   uint nunits;
 
-  uint memlimit = getmemorylimit();
+  uint memlimit = getmemlit();
   uint sz = getsz();
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
   if(sz+nunits > memlimit && memlimit != 0) {

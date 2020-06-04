@@ -301,7 +301,7 @@ uint getmemlit(void)
 int
 sys_getmemlit(void)
 {
-  getmemorylimit();
+  getmemlit();
   return 0; 
 }
 

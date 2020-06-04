@@ -199,10 +199,10 @@ parsecmd(char *s)
           #ifdef DEV
           printf(2,"now cmd -> %s\n", s);
           isCmdEnd(s);
-          s = getCmdInt(s, cmd_argvchar0);
+          s = getCmdString(s, cmd_argvchar0);
           isCmdEnd(s);
           printf(2,"now cmd -> %s\n", s);
-          s = getCmdInt(s, cmd_argvchar1);
+          s = getCmdString(s, cmd_argvchar1);
           isCmdEnd(s);
           printf(2,"now cmd -> %s\n", s);
           s = getCmdString(s, &cmd_argvint2);

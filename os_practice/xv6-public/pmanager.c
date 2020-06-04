@@ -167,11 +167,6 @@ parsecmd(char *s)
       if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
       {
           cmd.type = _LIST;
-          #ifdef DEV
-          isCmdEnd(s);
-          s = getCmdString(s, cmd_argvchar0);
-          isCmdEnd(s);
-          #endif
       }
       else if(s[0] == 'e' && s[1] == 'x' && s[2] == 'i' && s[3] == 't')
       {
@@ -201,6 +196,18 @@ parsecmd(char *s)
       else if(s[0] == 'm' && s[1] == 'e' && s[2] == 'm' && s[3] == 'l' && s[4] == 'i' && s[5] == 'm' )
       {
           cmd.type = _MEMLIM;
+          #ifdef DEV
+          printf(2,"now cmd -> %s\n", s);
+          isCmdEnd(s);
+          s = getCmdInt(s, cmd_argvchar0);
+          isCmdEnd(s);
+          printf(2,"now cmd -> %s\n", s);
+          s = getCmdInt(s, cmd_argvchar1);
+          isCmdEnd(s);
+          printf(2,"now cmd -> %s\n", s);
+          s = getCmdString(s, &cmd_argvint2);
+          isCmdEnd(s);
+          #endif
       }
       else
       {

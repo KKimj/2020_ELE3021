@@ -139,7 +139,7 @@ parsecmd(char *s)
 
   if(len == 4)
   {
-      if(s[0] = 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
+      if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
       {
           cmd->type = _LIST;
       }
@@ -151,28 +151,10 @@ parsecmd(char *s)
 void
 runcmd(struct cmd *cmd)
 {
-  int p[2];
-//   struct backcmd *bcmd;
-  struct execcmd *ecmd;
-//   struct listcmd *lcmd;
-//   struct pipecmd *pcmd;
-//   struct redircmd *rcmd;
-
   if(cmd == 0)
     exit();
 
   switch(cmd->type){
-  default:
-    panic("runcmd");
-
-  case EXEC:
-    ecmd = (struct execcmd*)cmd;
-    if(ecmd->argv[0] == 0)
-      exit();
-    exec(ecmd->argv[0], ecmd->argv);
-    printf(2, "exec %s failed\n", ecmd->argv[0]);
-    break;
-
     case _LIST:
         printf(2, "List !!");
         break;

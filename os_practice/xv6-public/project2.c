@@ -63,6 +63,8 @@ sys_getshmem(void)
     return 0;
 }
 
+#undef VERBOSE
+
 
 int getadmin(char *password)
 {

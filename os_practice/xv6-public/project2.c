@@ -36,7 +36,7 @@ sys_setmemorylimit(void)
 
     #ifdef VERBOSE
     // cprintf("pid %d\n", pid);
-    cprintf("limit %d\n", limit);
+    cprintf("%d\n", limit);
     #endif
     return setmemorylimit(pid, limit);
 }

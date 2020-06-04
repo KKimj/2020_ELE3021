@@ -67,15 +67,22 @@ exec(char *path, char **argv)
   // Make the first inaccessible.  Use the second as the user stack.
   sz = PGROUNDUP(sz);
   #ifdef PROJECT2
+  int stacksize = (curproc == 0 ?  1 : curproc->stacksize) ;
   #ifdef VERBOSE
-  cprintf("@exec.c-> curproc stacksize : %d\n", curproc->stacksize);
+  cprintf("@exec.c-> curproc stacksize : %d\n", stacksize);
   #endif
-  if((sz = allocuvm(pgdir, sz, sz + PGSIZE*(1 + (curproc->stacksize==0?1:curproc->stacksize) ))) == 0)
+  if((sz = allocuvm(pgdir, sz, sz + PGSIZE*(1 +stacksize)     )) == 0)
   #else
   if((sz = allocuvm(pgdir, sz, sz + 2*PGSIZE)) == 0)
   #endif
     goto bad;
+  #ifdef PROJECT2
+  clearpteu(pgdir, (char*)(sz - PGSIZE*(1 +stacksize)));
+  #else
   clearpteu(pgdir, (char*)(sz - 2*PGSIZE));
+
+  #endif
+
   sp = sz;
 
   // Push argument strings, prepare rest of stack in ustack.
@@ -110,7 +117,7 @@ exec(char *path, char **argv)
   curproc->tf->eip = elf.entry;  // main
   curproc->tf->esp = sp;
   #ifdef PROJECT2
-  curproc->stacksize = 1;
+  curproc->stacksize = stacksize;
   curproc->memlim = 0;
   #endif
 

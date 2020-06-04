@@ -190,8 +190,7 @@ parsecmd(char *s)
           cmd.type = _KILL;
           #ifdef DEV
           isCmdEnd(s);
-          int pid;
-          pid = getCmdInt(s);
+          getCmdInt(s);
           isCmdEnd(s);
           #endif
       }

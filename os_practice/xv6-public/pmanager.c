@@ -172,6 +172,11 @@ parsecmd(char *s)
       {
           cmd.type = _EXIT;
       }
+      else
+      {
+        cmd.type = -1;
+      }
+      
   }
   else
   {
@@ -187,6 +192,11 @@ parsecmd(char *s)
       {
           cmd.type = _MEMLIM;
       }
+      else
+      {
+        cmd.type = -1;
+      }
+      
   }
   
   

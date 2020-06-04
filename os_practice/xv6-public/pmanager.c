@@ -128,13 +128,18 @@ main(int argc, char *argv[])
         if(fork() == 0)
         {
             runcmd(&cmd);
-            // wait();
+            #ifdef VERBOSE
+            printf(1, "Child is alive!\n");
             exit();
+            #endif
         }
         // wait();
-        sleep(10);
+        // sleep(10);
         if(cmd.type == _EXIT)
         {
+            #ifdef VERBOSE
+            printf(1, "EXIT cmd!\n");
+            #endif
             wait();
             exit();
         }

@@ -244,7 +244,7 @@ int exec2(char *path, char **argv, int stacksize)
     myproc()->stacksize = stacksize;
 
     #ifdef VERBOSE
-    cprintf(2, "@sysproc.c -> myproc stacksize : %d\n", myproc()->stacksize);
+    cprintf("@sysproc.c -> myproc stacksize : %d\n", myproc()->stacksize);
     #endif
 
     return exec(path, argv); // exec2 success

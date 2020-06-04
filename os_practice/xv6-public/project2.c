@@ -45,6 +45,9 @@ sys_setmemorylimit(void)
     int pid = 0, limit=0;
     if(argint(0,&pid) < 0)
         return -1;
+
+    cprintf("%d\n", pid);
+    
     return setmemorylimit(pid, limit);
 }
 
@@ -102,7 +105,7 @@ int setmemorylimit(int pid, int limit)
     // cprintf("%d", limit);
     cprintf("\n");
     #endif
-    cprintf("aa\n");
+
     if(1) // setmemory limit fail
     {
         return -1;

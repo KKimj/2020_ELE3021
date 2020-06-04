@@ -277,7 +277,7 @@ runcmd(struct cmd *cmd)
     #endif
         int val = kill(cmd_argvint1);
         if(val == 0) 
-          printf(2, 'Kill Success!\n');
+          printf(2, "Kill Success!\n");
         else
         {
           printf(2, "Kill Fail!\n");

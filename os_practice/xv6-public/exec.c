@@ -7,6 +7,8 @@
 #include "x86.h"
 #include "elf.h"
 
+#define PROJECT2
+
 int
 exec(char *path, char **argv)
 {
@@ -99,6 +101,11 @@ exec(char *path, char **argv)
   curproc->sz = sz;
   curproc->tf->eip = elf.entry;  // main
   curproc->tf->esp = sp;
+  #ifdef PROJECT2
+  curproc->stacksize = 1;
+  curproc->memlim = 0;
+  #endif
+
   switchuvm(curproc);
   freevm(oldpgdir);
   return 0;

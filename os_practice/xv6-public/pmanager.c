@@ -166,7 +166,7 @@ parsecmd(char *s)
       {
           cmd.type = _EXECUTE;
       }
-      if(s[0] == 'm' && s[1] == 'e' && s[2] == 'm' && s[3] == 'l' && s[4] == 'i' && s[3] == m )
+      if(s[0] == 'm' && s[1] == 'e' && s[2] == 'm' && s[3] == 'l' && s[4] == 'i' && s[5] == 'm' )
       {
           cmd.type = _MEMLIM;
       }

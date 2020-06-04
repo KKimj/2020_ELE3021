@@ -215,7 +215,10 @@ fork(void)
   pid = np->pid;
 
   #ifdef PROJECT2
-  np->upticks = uptime();
+  acquire(&tickslock);
+  np->upticks = ticks;
+  release(&tickslock);
+  // np->upticks = uptime();
   #endif
 
   acquire(&ptable.lock);

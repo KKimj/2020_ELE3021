@@ -34,6 +34,11 @@ struct context {
 
 enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
+#define PROJECT2
+#ifdef PROJECT2
+enum procmode { ADMIN, USER} ;
+#endif
+
 // Per-process state
 struct proc {
   uint sz;                     // Size of process memory (bytes)
@@ -49,6 +54,12 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+  // project 2 varibles
+  #ifdef PROJECT2
+  uint upticks;
+  uint memlim;
+  enum procmode mode;
+  #endif
 };
 
 // Process memory is laid out contiguously, low addresses first:

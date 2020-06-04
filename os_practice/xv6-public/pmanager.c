@@ -321,7 +321,8 @@ char* getCmdString(char *s, char *d)
     #ifdef VERBOSE
     printf(2, "%c", *s);
     #endif
-    *(d++) = *(s++);
+    *d = *s;
+    d++,s++;
   }
   #ifdef VERBOSE
   printf(2, "\n");

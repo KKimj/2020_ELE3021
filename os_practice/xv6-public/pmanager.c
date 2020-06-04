@@ -9,8 +9,8 @@
 // int setmemorylimit(int pid, int limit);
 // char * getshmem(int pid); 
 
-#define VERBOSE
-#define DEV
+//#define VERBOSE
+//#define DEV
 
 
 // Parsed command representation

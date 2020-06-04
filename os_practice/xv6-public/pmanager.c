@@ -275,7 +275,14 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE
         printf(2, "KILL pid : %d!!\n", cmd_argvint1);
     #endif
-        kill(cmd_argvint1);
+        int val = kill(cmd_argvint1);
+        if(val == 0) 
+          printf(2, 'Kill Success!\n');
+        else
+        {
+          printf(2, "Kill Fail!\n");
+        }
+        
         break;
     case _EXECUTE:
     #ifdef VERBOSE

@@ -205,7 +205,7 @@ parsecmd(char *s)
           s = getCmdString(s, cmd_argvchar1);
           isCmdEnd(s);
           printf(2,"now cmd -> %s\n", s);
-          s = getCmdString(s, &cmd_argvint2);
+          s = getCmdInt(s, &cmd_argvint2);
           isCmdEnd(s);
           #endif
       }

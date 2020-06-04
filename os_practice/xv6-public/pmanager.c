@@ -112,6 +112,10 @@ main(int argc, char *argv[])
         if(fork() == 0)
             runcmd(parsecmd(buf));
         wait();
+        if(cmd.type == _EXIT)
+        {
+            exit();
+        }
     }
 
 

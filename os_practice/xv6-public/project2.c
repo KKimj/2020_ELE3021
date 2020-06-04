@@ -97,7 +97,7 @@ int getadmin(char *password)
             break;
         password++, _key++;
     }
-    if(*key!='9')  // login fail
+    if(*_key!='9')  // login fail
     {
         return -1;
     }

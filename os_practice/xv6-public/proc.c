@@ -542,7 +542,13 @@ list(void)
   #ifdef VERBOSE
   cprintf("list function Start!\n");
   #endif
-
+  // printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)\n");
+  
+  struct proc *p;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+    cprintf("%s     %d %d %d %d\n", p->name, p->pid, 12, p->sz, 23);
+  }
 
   #ifdef VERBOSE
   cprintf("list function Exit!\n");

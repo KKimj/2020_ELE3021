@@ -81,7 +81,7 @@ int cmd_argc;
 char cmd_argvchar0[100];
 char cmd_argvchar1[100];
 char cmd_argvchar2[100];
-char * cmd_argv[3];
+char * cmd_argv[] = {cmd_argvchar1};
 int cmd_argvint1;
 int cmd_argvint2;
 
@@ -269,8 +269,7 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE
         printf(2, "Execute path : %s stack size : %d!!\n", cmd_argvchar1, cmd_argvint2);
     #endif
-        char * tmp[] = cmd_argvchar1;
-        exec2(cmd_argvchar1, tmp, cmd_argvint2);
+        exec2(cmd_argvchar1, cmd_argv, cmd_argvint2);
         break;
     case _MEMLIM:
     #ifdef VERBOSE    

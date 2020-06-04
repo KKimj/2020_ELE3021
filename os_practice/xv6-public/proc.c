@@ -7,6 +7,8 @@
 #include "proc.h"
 #include "spinlock.h"
 
+#define PROJECT2
+
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
@@ -211,6 +213,10 @@ fork(void)
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
 
   pid = np->pid;
+
+  #ifdef PROJECT2
+  np->upticks = uptime();
+  #endif
 
   acquire(&ptable.lock);
 

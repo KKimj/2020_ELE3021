@@ -107,7 +107,7 @@ main(int argc, char *argv[])
     //exec("pmanager", argv_dev);
     printf(2, "This pid : %d\n", getpid());
     #endif
-
+    setmodeadmin();
     static char buf[100];
     int fd;
     // Ensure that three file descriptors are open.

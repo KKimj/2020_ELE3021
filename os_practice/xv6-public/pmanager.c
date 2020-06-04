@@ -109,9 +109,10 @@ main(int argc, char *argv[])
 
   // Read and run input commands.
     while(getcmd(buf, sizeof(buf)) >= 0){
-        // if(fork() == 0)
-            runcmd(parsecmd(buf));
-        // wait();
+        parsecmd(buf);
+        if(fork() == 0)
+            runcmd(&cmd);
+        wait();
         if(cmd.type == _EXIT)
         {
             exit();

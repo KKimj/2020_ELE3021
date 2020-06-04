@@ -2,7 +2,6 @@
 #include "stat.h"
 #include "user.h"
 #include "param.h"
-
 // Memory allocator by Kernighan and Ritchie,
 // The C programming Language, 2nd ed.  Section 8.7.
 
@@ -59,6 +58,8 @@ morecore(uint nu)
   free((void*)(hp + 1));
   return freep;
 }
+
+#include "defs.h"
 
 int
 sys_malloc(void)

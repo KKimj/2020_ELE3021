@@ -85,6 +85,7 @@ char * cmd_argv[3];
 int cmd_argvint0;
 int cmd_argvint1;
 
+int
 main(int argc, char *argv[])
 {
     #ifdef VERBOSE

@@ -281,9 +281,11 @@ runcmd(struct cmd *cmd)
     case _EXECUTE:
     #ifdef VERBOSE
         printf(2, "Execute path : %s stack size : %d argv[0] : %s!!\n", cmd_argvchar1, cmd_argvint2, cmd_argv[0]);
-        exec(cmd_argvchar1, cmd_argv);
     #endif
-        exec2(cmd_argvchar1, cmd_argv, cmd_argvint2);
+        if(exec2(cmd_argvchar1, cmd_argv, cmd_argvint2) == -1)
+        {
+          printf(2, "Exec2 Fail!\n");
+        }
         break;
     case _MEMLIM:
     #ifdef VERBOSE    

@@ -59,11 +59,14 @@ morecore(uint nu)
   return freep;
 }
 
-
+#define VERBOSE
 
 void*
 malloc(uint nbytes)
 {
+  #ifdef VERBOSE
+  printf(2, "malloc\n");
+  #endif
   Header *p, *prevp;
   uint nunits;
 

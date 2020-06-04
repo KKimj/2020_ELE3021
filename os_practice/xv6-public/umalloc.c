@@ -1,5 +1,4 @@
 #include "types.h"
-#include "defs.h"
 #include "stat.h"
 #include "user.h"
 #include "param.h"
@@ -61,14 +60,6 @@ morecore(uint nu)
 }
 
 
-int
-sys_malloc(void)
-{
-  uint u;
-  if(argint(0,&u) < 0)
-
-  malloc(u);
-}
 
 void*
 malloc(uint nbytes)

@@ -1,6 +1,18 @@
-#ifdef PROJECT2
 #include "types.h"
 #include "defs.h"
+#include "user.h"
+
+
+int
+sys_malloc(void)
+{
+  uint u;
+  if(argint(0,&u) < 0)
+
+  malloc(u);
+}
+
+#ifdef PROJECT2
 // #include "proc.h"
 #define VERBOSE
 #define MAXARG       32  // max exec arguments

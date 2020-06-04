@@ -139,6 +139,10 @@ parsecmd(char *s)
 {
   int len = strlen(s);
 
+  #ifdef VERBOSE
+  printf(2, "cmd length is %d\n",len);
+  #endif
+
   if(len == 4)
   {
       if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')

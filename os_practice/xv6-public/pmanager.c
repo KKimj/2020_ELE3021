@@ -134,18 +134,18 @@ getcmd(char *buf, int nbuf)
 struct cmd*
 parsecmd(char *s)
 {
-  struct cmd *cmd;
+  struct cmd cmd;
   int len = strlen(s);
 
   if(len == 4)
   {
       if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
       {
-          cmd->type = _LIST;
+          cmd.type = _LIST;
       }
   }
   
-  return cmd;
+  return &cmd;
 }
 
 void

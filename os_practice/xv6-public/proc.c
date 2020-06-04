@@ -572,4 +572,33 @@ list(void)
   #endif
   return;
 }
+
+
+
+int setmemorylimit(int pid, int limit)
+{
+    #ifdef VERBOSE
+    // cprintf("%s%s\n", msg_setmemorylimit, msg_start);
+    #endif
+    if(myproc()->mode == USER) return -1;
+    if(limit < 0) return -1;
+    if(pid<0) return -1;
+
+    struct proc *p;
+
+    acquire(&ptable.lock);
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->pid == pid){
+        if(p->sz > limit)
+        {
+          return -1;
+        }
+        else p->memlim = limit;
+        release(&ptable.lock);
+        return 0;
+      }
+    }
+    release(&ptable.lock);
+    return -1; // setmemory limit success
+}
 #endif

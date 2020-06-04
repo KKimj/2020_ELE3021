@@ -99,7 +99,7 @@ sys_uptime(void)
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
-int setmemorylimit(int pid, int limit);
+//int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
 
@@ -255,23 +255,6 @@ int exec2(char *path, char **argv, int stacksize)
     return 0; // exec2 success
 }
 
-
-int setmemorylimit(int pid, int limit)
-{
-    #ifdef VERBOSE
-    // cprintf("%s%s\n", msg_setmemorylimit, msg_start);
-    #endif
-
-    if(1) // setmemory limit fail
-    {
-        return -1;
-    }
-
-    #ifdef VERBOSE
-    cprintf("%s%s\n", msg_setmemorylimit, msg_exit);
-    #endif
-    return 0; // setmemory limit success
-}
 char * getshmem(int pid)
 {
     char * ret_val = (char *) 0xFFFFFFFF;

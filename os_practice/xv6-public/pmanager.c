@@ -183,31 +183,55 @@ parsecmd(char *s)
       if(s[0] == 'k' && s[1] == 'i' && s[2] == 'l' && s[3] == 'l')
       {
           cmd.type = _KILL;
-          #ifdef DEV
-          isCmdEnd(s);
-          s = getCmdInt(s, &cmd_argvint1);
-          isCmdEnd(s);
-          #endif
+          
+          s = getCmdString(s, cmd_argvchar0);
+          if(isCmdEnd(s))
+            cmd.type = -1;
+          else
+          {
+            s = getCmdInt(s, &cmd_argvint1);
+            if(!isCmdEnd(s))
+              cmd.type = -1;  
+          }
       }
       else if(s[0] == 'e' && s[1] == 'x' && s[2] == 'e' && s[3] == 'c' && s[4] == 'u' && s[5] == 't' && s[6] == 'e' )
       {
           cmd.type = _EXECUTE;
+
+          s = getCmdString(s, cmd_argvchar0);
+          if(isCmdEnd(s))
+            cmd.type = -1;
+          else
+          {
+            s = getCmdString(s, cmd_argvchar1);
+            if(isCmdEnd(s))
+              cmd.type = -1;
+            else
+            {
+              s = getCmdInt(s, &cmd_argvint2);
+              if(!isCmdEnd(s))
+                cmd.type = -1;
+            }
+          }
       }
       else if(s[0] == 'm' && s[1] == 'e' && s[2] == 'm' && s[3] == 'l' && s[4] == 'i' && s[5] == 'm' )
       {
           cmd.type = _MEMLIM;
-          #ifdef DEV
-          printf(2,"now cmd -> %s\n", s);
-          isCmdEnd(s);
           s = getCmdString(s, cmd_argvchar0);
-          isCmdEnd(s);
-          printf(2,"now cmd -> %s\n", s);
-          s = getCmdString(s, cmd_argvchar1);
-          isCmdEnd(s);
-          printf(2,"now cmd -> %s\n", s);
-          s = getCmdInt(s, &cmd_argvint2);
-          isCmdEnd(s);
-          #endif
+          if(isCmdEnd(s))
+            cmd.type = -1;
+          else
+          {
+            s = getCmdInt(s, &cmd_argvint1);
+            if(isCmdEnd(s))
+              cmd.type = -1;
+            else
+            {
+              s = getCmdInt(s, &cmd_argvint2);
+              if(!isCmdEnd(s))
+                cmd.type = -1;
+            }
+          }
       }
       else
       {
@@ -234,17 +258,17 @@ runcmd(struct cmd *cmd)
         break;
     case _KILL:
     #ifdef VERBOSE
-        printf(2, "KILL !!\n");
+        printf(2, "KILL !! %d\n", cmd_argvint1);
     #endif
         break;
     case _EXECUTE:
     #ifdef VERBOSE
-        printf(2, "Execute !!\n");
+        printf(2, "Execute %s %d!!\n", cmd_argvchar1, cmd_argvint2);
     #endif
         break;
     case _MEMLIM:
     #ifdef VERBOSE    
-        printf(2, "Memlimit !!\n");
+        printf(2, "Memlimit %d %d!!\n", cmd_argvint1, cmd_argvint2);
     #endif
         int pid = 0;
         int limit = 0;

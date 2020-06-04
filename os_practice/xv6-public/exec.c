@@ -67,7 +67,7 @@ exec(char *path, char **argv)
   // Make the first inaccessible.  Use the second as the user stack.
   sz = PGROUNDUP(sz);
   #ifdef PROJECT2
-  int stacksize = (curproc->stacksize == 0 ?  1 : curproc->stacksize) ;
+  int stacksize = (curproc->stacksize <= 0 ?  1 : curproc->stacksize) ;
   #ifdef VERBOSE
   cprintf("@exec.c-> curproc stacksize : %d\n", stacksize);
   #endif

@@ -47,5 +47,5 @@ char * getshmem(int pid);
 void list(void);
 void setmodeadmin(void);
 void setmodeuser(void);
-uint getmemorylimit(void);
+uint getmemlit(void);
 uint getsz(void);

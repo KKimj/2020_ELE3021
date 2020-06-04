@@ -293,13 +293,13 @@ uint getsz(void)
   return myproc()->sz;
 }
 
-uint getmemorylimit(void)
+uint getmemlit(void)
 {
   return myproc()->memlim;
 }
 
 int
-sys_getmomorylimit(void)
+sys_getmemlit(void)
 {
   getmemorylimit();
   return 0; 

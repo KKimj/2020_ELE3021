@@ -113,7 +113,7 @@ extern int sys_getshmem(void);
 extern int sys_list(void);
 extern int sys_setmodeadmin(void);
 extern int sys_setmodeuser(void);
-extern int sys_getmemorylimit(void);
+extern int sys_getmemlit(void);
 extern int sys_getsz(void);
 
 
@@ -147,7 +147,7 @@ static int (*syscalls[])(void) = {
 [SYS_list]    sys_list,
 [SYS_setmodeadmin] sys_setmodeadmin,
 [SYS_setmodeuser] sys_setmodeuser,
-[SYS_getmemorylimit] sys_getmemorylimit,
+[SYS_getmemlit] sys_getmemlit,
 [SYS_getsz] sys_getsz,
 };
 

@@ -27,5 +27,5 @@
 #define SYS_list 26
 #define SYS_setmodeadmin 27
 #define SYS_setmodeuser 28
-#define SYS_getmemorylimit 29
+#define SYS_getmemlit 29
 #define SYS_getsz 30

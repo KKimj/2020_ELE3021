@@ -36,6 +36,6 @@ SYSCALL(getshmem)
 SYSCALL(list)
 SYSCALL(setmodeadmin)
 SYSCALL(setmodeuser)
-SYSCALL(getmemorylimit)
+SYSCALL(getmemlit)
 SYSCALL(getsz)
 

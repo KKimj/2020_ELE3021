@@ -66,11 +66,17 @@ malloc(uint nbytes)
 {
   #ifdef VERBOSE
   printf(2, "malloc\n");
+  
   #endif
   Header *p, *prevp;
   uint nunits;
 
+  uint memlimit = 60000;
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
+  if(nunits > memlimit) {
+    printf(2, "Memory limit!!\n");
+    return 0;
+  }
   if((prevp = freep) == 0){
     base.s.ptr = freep = prevp = &base;
     base.s.size = 0;

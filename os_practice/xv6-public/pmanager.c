@@ -74,6 +74,8 @@ int isCmdEnd(char *s);
 char* getCmdInt(char *s, int * d);
 char* getCmdString(char *s, char *d);
 
+int list(void);
+
 struct cmd cmd;
 int cmd_argc;
 char cmd_argvchar0[100];
@@ -124,7 +126,7 @@ main(int argc, char *argv[])
         parsecmd(buf);
         if(fork() == 0)
             runcmd(&cmd);
-        wait();
+        //wait();
         if(cmd.type == _EXIT)
         {
             exit();
@@ -255,16 +257,19 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE
         printf(2, "List !!\n");
     #endif
+        list();
         break;
     case _KILL:
     #ifdef VERBOSE
         printf(2, "KILL pid : %d!!\n", cmd_argvint1);
     #endif
+        kill(cmd_argvint1);
         break;
     case _EXECUTE:
     #ifdef VERBOSE
         printf(2, "Execute path : %s stack size : %d!!\n", cmd_argvchar1, cmd_argvint2);
     #endif
+        exec2(cmd_argvchar1, cmd_argvchar1, cmd_argvint2);
         break;
     case _MEMLIM:
     #ifdef VERBOSE    
@@ -359,3 +364,13 @@ char* getCmdString(char *s, char *d)
   return s;
 }
 
+
+
+int list(void)
+{
+  printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)\n");
+  //int i;
+  
+  printf(1, "Pmanager's msg : List Done!\n");
+  return 0;
+}

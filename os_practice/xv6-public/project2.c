@@ -1,13 +1,13 @@
 #include "types.h"
 #include "defs.h"
-#define VERBOS
+#define VERBOSE
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
 int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
-#ifdef VERBOS
+#ifdef VERBOSE
 // char * msg_start = "Start";
 // char * msg_exit = "Exit";
 // char * msg_getadmin = "GetAd";
@@ -57,7 +57,7 @@ sys_getshmem(void)
 
 int getadmin(char *password)
 {
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
 
@@ -66,7 +66,7 @@ int getadmin(char *password)
         return -1;
     }
 
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_exit);
     #endif
     return 0; // login success
@@ -75,7 +75,7 @@ int getadmin(char *password)
 
 int exec2(char *path, char **argv, int stacksize)
 {
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_exec2, msg_start);
     #endif
 
@@ -85,7 +85,7 @@ int exec2(char *path, char **argv, int stacksize)
         return -1;
     }
 
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_exec2, msg_exit);
     #endif
     return 0; // exec2 success
@@ -94,7 +94,7 @@ int exec2(char *path, char **argv, int stacksize)
 
 int setmemorylimit(int pid, int limit)
 {
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_setmemorylimit, msg_start);
     #endif
 
@@ -103,7 +103,7 @@ int setmemorylimit(int pid, int limit)
         return -1;
     }
 
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_setmemorylimit, msg_exit);
     #endif
     return 0; // setmemory limit success
@@ -112,12 +112,12 @@ char * getshmem(int pid)
 {
     char * ret_val = (char *) 0xFFFFFFFF;
 
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_getshmem, msg_start);
     #endif
 
 
-    #ifdef VERBOS
+    #ifdef VERBOSE
     cprintf("%s%s\n", msg_getshmem, msg_exit);
     #endif
     return ret_val;

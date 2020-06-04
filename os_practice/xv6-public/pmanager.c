@@ -32,6 +32,8 @@ main(int argc, char *argv[])
     setmemorylimit(pid, limit);
 
     getshmem(pid);
+    char * argv_dev = {"cat", "echo!"};
+    exec("cat", argv_dev);
     #endif
 
     #ifdef VERBOSE

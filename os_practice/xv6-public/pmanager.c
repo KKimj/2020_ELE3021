@@ -109,6 +109,7 @@ main(int argc, char *argv[])
     // char * argv_dev[] = {"cat", "echo!"};
     //exec("cat", argv_dev);
     //exec("pmanager", argv_dev);
+    printf(2, "This pid : %d\n", getpid());
     #endif
 
     static char buf[100];

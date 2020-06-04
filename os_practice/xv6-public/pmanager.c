@@ -71,7 +71,7 @@ struct cmd* parsecmd(char *s);
 void runcmd(struct cmd *cmd);
 
 int isCmdEnd(char *s);
-int getCmdInt(char *s);
+char* getCmdInt(char *s, int * d);
 char* getCmdString(char *s, char *d);
 
 struct cmd cmd;
@@ -80,8 +80,8 @@ char cmd_argvchar0[100];
 char cmd_argvchar1[100];
 char cmd_argvchar2[100];
 char * cmd_argv[3];
-int cmd_argvint0;
 int cmd_argvint1;
+int cmd_argvint2;
 
 int
 main(int argc, char *argv[])
@@ -190,7 +190,7 @@ parsecmd(char *s)
           cmd.type = _KILL;
           #ifdef DEV
           isCmdEnd(s);
-          getCmdInt(s);
+          s = getCmdInt(s, cmd_argvint1);
           isCmdEnd(s);
           #endif
       }
@@ -277,7 +277,7 @@ int isCmdEnd(char *s)
   return s[0] == 0;
 }
 
-int getCmdInt(char *s)
+char * getCmdInt(char *s, int * d)
 {
   while(strchr(whitespace, *s)) 
     s++;
@@ -295,9 +295,10 @@ int getCmdInt(char *s)
   
 
   #ifdef VERBOSE
-  printf(2, "getCmdInt return val -> %d", ret);
+  printf(2, "getCmdInt return val -> %d\n", ret);
   #endif
-  return ret;
+  *d = ret;
+  return s;
 }
 char* getCmdString(char *s, char *d)
 {
@@ -311,7 +312,7 @@ char* getCmdString(char *s, char *d)
     s++;
   
   #ifdef VERBOSE
-  printf(2,"getCmdString return val -> %s", d);
+  printf(2,"getCmdString return val -> %s\n", d);
   #endif
   return s;
 }

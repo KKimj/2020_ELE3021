@@ -83,7 +83,7 @@ char * msg_setmemorylimit = "SetmemLmit";
 char * msg_getshmem = "Getshmem";
 #endif
 
-// char * key = "2018008159";
+char key[] = "2018008159";
 int getadmin(char *password)
 {
     #ifdef VERBOSE

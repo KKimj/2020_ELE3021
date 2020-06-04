@@ -8,7 +8,7 @@
 #include "elf.h"
 
 #define PROJECT2
-#define VERBOSE
+// #define VERBOSE
 
 int
 exec(char *path, char **argv)

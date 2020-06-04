@@ -33,7 +33,7 @@ main(int argc, char *argv[])
 
     getshmem(pid);
     char * argv_dev[] = {"cat", "echo!"};
-    exec("cat", argv_dev);
+    //exec("cat", argv_dev);
     exec("pmanager", argv_dev);
     
     #endif

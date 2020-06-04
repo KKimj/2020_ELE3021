@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-#define VERBOSE
+//#define VERBOSE
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -63,7 +63,9 @@ sys_getshmem(void)
     return 0;
 }
 
+#ifdef VERBOSE
 #undef VERBOSE
+#endif
 
 #ifdef VERBOSE
 // char * msg_start = "Start";

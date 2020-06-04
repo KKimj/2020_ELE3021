@@ -36,7 +36,7 @@ enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 #define PROJECT2
 #ifdef PROJECT2
-enum procmode { ADMIN, USER} ;
+enum procmode {USER, ADMIN} ;
 #endif
 
 // Per-process state

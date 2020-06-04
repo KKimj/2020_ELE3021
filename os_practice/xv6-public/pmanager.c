@@ -388,7 +388,7 @@ char* getCmdString(char *s, char *d)
 
 int plist(void)
 {
-  printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)   | ADMIN_MODE\n");
+  printf(1, "NAME       | PID |   TIME  (ms)  |   MEMORY  (bytes) |   MEMLIM(bytes)   |   ADMIN_MODE\n");
   //int i;
   list();
   printf(1, "Pmanager's msg : List Done!\n");

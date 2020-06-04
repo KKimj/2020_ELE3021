@@ -167,6 +167,11 @@ parsecmd(char *s)
       if(s[0] == 'l' && s[1] == 'i' && s[2] == 's' && s[3] == 't')
       {
           cmd.type = _LIST;
+          #ifdef DEV
+          isCmdEnd(s);
+          s = getCmdString(s, cmd_argvchar0);
+          isCmdEnd(s);
+          #endif
       }
       else if(s[0] == 'e' && s[1] == 'x' && s[2] == 'i' && s[3] == 't')
       {

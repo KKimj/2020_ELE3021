@@ -106,7 +106,7 @@ main(int argc, char *argv[])
 
   // Read and run input commands.
     while(getcmd(buf, sizeof(buf)) >= 0){
-        if(fork1() == 0)
+        if(fork() == 0)
             runcmd(parsecmd(buf));
         wait();
     }
@@ -152,11 +152,11 @@ void
 runcmd(struct cmd *cmd)
 {
   int p[2];
-  struct backcmd *bcmd;
+//   struct backcmd *bcmd;
   struct execcmd *ecmd;
-  struct listcmd *lcmd;
-  struct pipecmd *pcmd;
-  struct redircmd *rcmd;
+//   struct listcmd *lcmd;
+//   struct pipecmd *pcmd;
+//   struct redircmd *rcmd;
 
   if(cmd == 0)
     exit();

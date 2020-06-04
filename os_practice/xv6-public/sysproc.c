@@ -290,13 +290,15 @@ sys_setmodeuser(void)
 int
 sys_getmomorylimit(void)
 {
-  return getmemorylimit(), 0;
+  getmemorylimit();
+  return 0; 
 }
 
 
 int sys_getsz(void)
 {
-  return getsz(), 0;
+  getsz();
+  return 0;
 }
 
 #endif

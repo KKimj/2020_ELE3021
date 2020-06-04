@@ -1,6 +1,7 @@
 #include "types.h"
 #include "stat.h"
 #include "user.h"
+#include "fcntl.h"
 
 
 // int getadmin(char *password);
@@ -34,9 +35,18 @@ main(int argc, char *argv[])
     getshmem(pid);
     char * argv_dev[] = {"cat", "echo!"};
     //exec("cat", argv_dev);
-    exec("pmanager", argv_dev);
-    
+    //exec("pmanager", argv_dev);
     #endif
+
+    static char buf[100];
+    int fd;
+    // Ensure that three file descriptors are open.
+    while((fd = open("console", O_RDWR)) >= 0){
+        if(fd >= 3){
+            close(fd);
+            break;
+        }
+    }
 
     #ifdef VERBOSE
     printf(1, "Pmanager exit!\n");

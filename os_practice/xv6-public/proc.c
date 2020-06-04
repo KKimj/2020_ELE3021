@@ -547,7 +547,8 @@ list(void)
   struct proc *p;
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
-    cprintf("%s     %d %d %d %d\n", p->name, p->pid, 12, p->sz, 23);
+    if(p->sz == 0) continue;
+    cprintf("%s             %d         %d               %d                %d\n", p->name, p->pid, 12, p->sz, 23);
   }
 
   #ifdef VERBOSE

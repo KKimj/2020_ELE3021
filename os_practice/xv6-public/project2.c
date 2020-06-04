@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-//#define VERBOSE
+#define VERBOSE
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -46,8 +46,12 @@ sys_setmemorylimit(void)
     if(argint(0,&pid) < 0)
         return -1;
 
-    cprintf("%d\n", pid);
-    
+    if(argint(1,&limit) < 0)
+        return -1;
+
+    #ifdef VERBOSE
+    cprintf("pid : %d limit : %d\n", pid, limit);
+    #endif
     return setmemorylimit(pid, limit);
 }
 
@@ -100,10 +104,7 @@ int exec2(char *path, char **argv, int stacksize)
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOSE
-    // cprintf("%s%s", msg_setmemorylimit, msg_start);
-    cprintf("%d", pid);
-    // cprintf("%d", limit);
-    cprintf("\n");
+    // cprintf("%s%s\n", msg_setmemorylimit, msg_start);
     #endif
 
     if(1) // setmemory limit fail

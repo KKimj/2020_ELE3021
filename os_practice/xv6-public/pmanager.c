@@ -258,17 +258,17 @@ runcmd(struct cmd *cmd)
         break;
     case _KILL:
     #ifdef VERBOSE
-        printf(2, "KILL !! %d\n", cmd_argvint1);
+        printf(2, "KILL pid : %d!!\n", cmd_argvint1);
     #endif
         break;
     case _EXECUTE:
     #ifdef VERBOSE
-        printf(2, "Execute %s %d!!\n", cmd_argvchar1, cmd_argvint2);
+        printf(2, "Execute path : %s stack size : %d!!\n", cmd_argvchar1, cmd_argvint2);
     #endif
         break;
     case _MEMLIM:
     #ifdef VERBOSE    
-        printf(2, "Memlimit %d %d!!\n", cmd_argvint1, cmd_argvint2);
+        printf(2, "Memlimit pid : %d limit : %d!!\n", cmd_argvint1, cmd_argvint2);
     #endif
         int pid = 0;
         int limit = 0;

@@ -226,12 +226,13 @@ int getadmin(char *password)
     }
     if(cnt<10)  // login fail
     {
-        cprintf("%s\n", _key);
+        myproc()->mode = USER;
         return -1;
     }
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_exit);
     #endif
+    myproc()->mode = ADMIN;
     return 0; // login success
 }
 

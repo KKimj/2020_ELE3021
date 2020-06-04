@@ -280,7 +280,8 @@ runcmd(struct cmd *cmd)
         break;
     case _EXECUTE:
     #ifdef VERBOSE
-        printf(2, "Execute path : %s stack size : %d!!\n", cmd_argvchar1, cmd_argvint2);
+        printf(2, "Execute path : %s stack size : %d argv[0] : %s!!\n", cmd_argvchar1, cmd_argvint2, cmd_argv[0]);
+        exec(cmd_argvchar1, cmd_argv);
     #endif
         exec2(cmd_argvchar1, cmd_argv, cmd_argvint2);
         break;

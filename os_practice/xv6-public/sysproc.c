@@ -202,12 +202,12 @@ sys_getshmem(void)
 // char * msg_setmemorylimit = "SetML";
 // char * msg_getshmem = "GetShM";
 
-char * msg_start = "Start!";
-char * msg_exit = "Exit!";
-char * msg_getadmin = "Getadmin ";
-char * msg_exec2 = "extwo ";
-char * msg_setmemorylimit = "SetmemLmit";
-char * msg_getshmem = "Getshmem";
+char  msg_start[] = "Start!";
+char  msg_exit[] = "Exit!";
+char  msg_getadmin[] = "Getadmin ";
+char  msg_exec2[] = "extwo ";
+char  msg_setmemorylimit[] = "SetmemLmit";
+char  msg_getshmem[] = "Getshmem";
 #endif
 
 char key[] = "2018008159";

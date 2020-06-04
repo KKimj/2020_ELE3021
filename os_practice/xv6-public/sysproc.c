@@ -302,14 +302,14 @@ uint getmemlit(void)
 int
 sys_getmemlit(void)
 {
-  getmemlit();
+  return getmemlit();
   return 0; 
 }
 
 
 int sys_getsz(void)
 {
-  getsz();
+  return getsz();
   return 0;
 }
 

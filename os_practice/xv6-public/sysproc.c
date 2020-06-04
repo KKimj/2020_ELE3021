@@ -243,6 +243,10 @@ int exec2(char *path, char **argv, int stacksize)
     if(stacksize < 1 || stacksize > 100) return -1;
     myproc()->stacksize = stacksize;
 
+    #ifdef VERBOSE
+    cprintf(2, "@sysproc.c -> myproc stacksize : %d\n", myproc()->stacksize);
+    #endif
+
     return exec(path, argv); // exec2 success
 }
 

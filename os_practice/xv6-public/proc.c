@@ -548,6 +548,7 @@ list(void)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
     if(p->sz == 0) continue;
+    if(p->state != RUNNING) continue;
     cprintf("%s             %d         %d               %d                %d\n", p->name, p->pid, 12, p->sz, 23);
   }
 

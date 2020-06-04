@@ -140,7 +140,8 @@ parsecmd(char *s)
   int len = strlen(s);
 
   #ifdef VERBOSE
-  printf(2, "cmd length is %d\n",len);
+  printf(2, "cmd length-> %d\n",len);
+  printf(2, "cmd string-> %s", s);
   #endif
 
   if(len == 4)

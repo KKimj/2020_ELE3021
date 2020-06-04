@@ -131,7 +131,7 @@ main(int argc, char *argv[])
             exit();
         }
         //wait();
-        sleep(10);
+        // sleep(10);
         if(cmd.type == _EXIT)
         {
             exit();

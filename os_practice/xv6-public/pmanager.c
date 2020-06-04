@@ -313,6 +313,7 @@ char* getCmdString(char *s, char *d)
     s++;
 
   #ifdef VERBOSE
+  char * old_d = d;
   printf(2, "getCmdString now parsing -> ");
   #endif
 
@@ -331,7 +332,7 @@ char* getCmdString(char *s, char *d)
     s++;
   
   #ifdef VERBOSE
-  printf(2,"getCmdString return val -> %s\n", d);
+  printf(2,"getCmdString return val -> %s\n", old_d);
   #endif
   return s;
 }

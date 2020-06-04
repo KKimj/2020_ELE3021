@@ -17,7 +17,16 @@ sys_getadmin(void)
     #ifdef VERBOSE
     cprintf("%s\n", passwd);
     #endif
-    return getadmin(passwd);
+
+    int ret = getadmin(passwd);
+    #ifdef VERBOSE
+    if(!ret)
+        cprintf("ok\n");
+    else
+        cprintf("no\n"); 
+    #endif
+
+    return ret;
 }
 
 int
@@ -78,12 +87,17 @@ int getadmin(char *password)
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
-    char * passwd = "2018008159";
-    if(1)  // login fail
+    char * key = "2018008159";
+    while(*password != *key)
+    {
+        if(*key=='9')
+            break;
+        password++, key++;
+    }
+    if(*key!='9')  // login fail
     {
         return -1;
     }
-
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_exit);
     #endif

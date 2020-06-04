@@ -113,7 +113,7 @@ char * getshmem(int pid)
     char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
-    cprintf("%s%s\n", msg_getshmem, msg_exit);
+    cprintf("%s%s\n", msg_getshmem, msg_start);
     #endif
 
 

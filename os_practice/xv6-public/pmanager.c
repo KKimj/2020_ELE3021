@@ -97,11 +97,6 @@ main(int argc, char *argv[])
     getadmin(passwd);
     list();
 
-    char * path = "./cat";
-    char * argv_[] = {"Hello", "World!"};
-    int stacksize = 13;
-    exec2(path, argv_, stacksize);
-
     int pid = 0;
     int limit = 0;
     setmemorylimit(pid, limit);

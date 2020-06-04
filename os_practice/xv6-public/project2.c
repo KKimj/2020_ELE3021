@@ -99,8 +99,8 @@ int setmemorylimit(int pid, int limit)
     cprintf("%d", pid);
     // cprintf("%d", limit);
     cprintf("\n");
-
     #endif
+    cprintf("pid : %d limit : %d\n", pid, limit);
 
     if(1) // setmemory limit fail
     {

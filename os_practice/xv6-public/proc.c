@@ -591,14 +591,18 @@ int setmemorylimit(int pid, int limit)
       if(p->pid == pid){
         if(p->sz > limit)
         {
+          release(&ptable.lock);
           return -1;
         }
-        else p->memlim = limit;
-        release(&ptable.lock);
-        return 0;
+        else 
+        {
+          p->memlim = limit;
+          release(&ptable.lock);
+          return 0;
+        }
       }
     }
     release(&ptable.lock);
-    return -1; // setmemory limit success
+    return -1; // setmemory limit Fail
 }
 #endif

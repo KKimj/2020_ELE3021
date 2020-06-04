@@ -8,12 +8,19 @@ int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
 #ifdef VERBOS
-char * msg_start = "Start";
-char * msg_exit = "Exit";
-char * msg_getadmin = "GetAd";
-char * msg_exec2 = "ExeTw";
-char * msg_setmemorylimit = "SetML";
-char * msg_getshmem = "GetShM";
+// char * msg_start = "Start";
+// char * msg_exit = "Exit";
+// char * msg_getadmin = "GetAd";
+// char * msg_exec2 = "ExeTw";
+// char * msg_setmemorylimit = "SetML";
+// char * msg_getshmem = "GetShM";
+
+char * msg_start = "Start!";
+char * msg_exit = "Exit!";
+char * msg_getadmin = "Getadmin ";
+char * msg_exec2 = "extwo ";
+char * msg_setmemorylimit = "SetmemLmit";
+char * msg_getshmem = "Getshmem";
 #endif
 
 int

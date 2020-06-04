@@ -312,9 +312,20 @@ char* getCmdString(char *s, char *d)
   while(strchr(whitespace, *s)) 
     s++;
 
-  while(!strchr(whitespace, *s))
-    *(d++) = *(s++);
+  #ifdef VERBOSE
+  printf(2, "getCmdString now parsing -> ");
+  #endif
 
+  while(!strchr(whitespace, *s))
+  {
+    #ifdef VERBOSE
+    printf(2, "%c", *s);
+    #endif
+    *(d++) = *(s++);
+  }
+  #ifdef VERBOSE
+  printf(2, "\n");
+  #endif
   while(strchr(whitespace, *s)) 
     s++;
   

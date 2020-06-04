@@ -11,7 +11,12 @@ char * getshmem(int pid);
 int
 sys_getadmin(void)
 {
-    char * passwd = "2018008159";
+    char * passwd;
+    if( argstr(0, &passwd) <0 )
+        return -1;
+    #ifdef VERBOSE
+    cprintf("%s\n", passwd);
+    #endif
     return getadmin(passwd);
 }
 
@@ -73,7 +78,7 @@ int getadmin(char *password)
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
-
+    char * passwd = "2018008159";
     if(1)  // login fail
     {
         return -1;

@@ -102,7 +102,7 @@ int setmemorylimit(int pid, int limit)
     // cprintf("%d", limit);
     cprintf("\n");
     #endif
-    cprintf("%d", pid);
+    cprintf("aa\n");
     if(1) // setmemory limit fail
     {
         return -1;

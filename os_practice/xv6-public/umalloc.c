@@ -1,4 +1,5 @@
 #include "types.h"
+#include "defs.h"
 #include "stat.h"
 #include "user.h"
 #include "param.h"
@@ -59,7 +60,6 @@ morecore(uint nu)
   return freep;
 }
 
-#include "defs.h"
 
 int
 sys_malloc(void)

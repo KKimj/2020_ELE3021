@@ -232,6 +232,7 @@ runcmd(struct cmd *cmd)
     default:
         printf(2, "Input Error!!\n");
   }
+  cmd->type = -1;
   exit();
 }
 

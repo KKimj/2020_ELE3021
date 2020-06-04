@@ -74,7 +74,7 @@ malloc(uint nbytes)
   uint memlimit = getmemorylimit();
   uint sz = getsz();
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
-  if(sz+nunits > memlimit || memlimit == 0) {
+  if(sz+nunits > memlimit && memlimit != 0) {
     printf(2, "Memory limit!!\n");
     return 0;
   }

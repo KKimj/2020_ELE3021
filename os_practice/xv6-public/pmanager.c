@@ -270,9 +270,7 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE    
         printf(2, "Memlimit pid : %d limit : %d!!\n", cmd_argvint1, cmd_argvint2);
     #endif
-        int pid = 0;
-        int limit = 0;
-        setmemorylimit(pid, limit);
+        setmemorylimit(cmd_argvint1, cmd_argvint2);
         break;
     case _EXIT:
     #ifdef VERBOSE     

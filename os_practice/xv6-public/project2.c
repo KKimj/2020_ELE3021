@@ -95,7 +95,7 @@ int exec2(char *path, char **argv, int stacksize)
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOSE
-    cprintf("%s%s\n", msg_setmemorylimit, msg_start);
+    cprintf("%s%s pid %d limit %d\n", msg_setmemorylimit, msg_start, pid, limit);
     #endif
 
     if(1) // setmemory limit fail

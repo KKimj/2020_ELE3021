@@ -188,6 +188,12 @@ parsecmd(char *s)
       if(s[0] == 'k' && s[1] == 'i' && s[2] == 'l' && s[3] == 'l')
       {
           cmd.type = _KILL;
+          #ifdef DEV
+          isCmdEnd(s);
+          int pid;
+          pid = getCmdInt(s);
+          isCmdEnd(s);
+          #endif
       }
       else if(s[0] == 'e' && s[1] == 'x' && s[2] == 'e' && s[3] == 'c' && s[4] == 'u' && s[5] == 't' && s[6] == 'e' )
       {
@@ -255,7 +261,13 @@ runcmd(struct cmd *cmd)
 
 int isCmdEnd(char *s)
 {
-  if(s[0] == 0) return 1;
+  if(s[0] == 0) 
+  {
+    #ifdef VERBOSE
+    printf(2, "isCmdEnd return val -> 1 at First branch!\n");
+    #endif
+    return 1;
+  }
   while(strchr(whitespace, *s)) 
     s++;
 

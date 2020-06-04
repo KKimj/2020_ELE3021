@@ -83,15 +83,15 @@ argstr(int n, char **pp)
 }
 
 
-int
-sys_malloc(void)
-{
-  uint u;
-  if(argint(0,(int *)&u) < 0)
-    return -1;
+// int
+// sys_malloc(void)
+// {
+//   uint u;
+//   if(argint(0,(int *)&u) < 0)
+//     return -1;
 
-  malloc(u);
-}
+//   malloc(u);
+// }
 
 extern int sys_chdir(void);
 extern int sys_close(void);
@@ -122,7 +122,7 @@ extern int sys_getshmem(void);
 extern int sys_list(void);
 extern int sys_setmodeadmin(void);
 extern int sys_setmodeuser(void);
-extern int sys_malloc(void);
+// extern int sys_malloc(void);
 
 
 
@@ -156,7 +156,7 @@ static int (*syscalls[])(void) = {
 [SYS_list]    sys_list,
 [SYS_setmodeadmin] sys_setmodeadmin,
 [SYS_setmodeuser] sys_setmodeuser,
-[SYS_malloc] sys_malloc,
+// [SYS_malloc] sys_malloc,
 };
 
 void

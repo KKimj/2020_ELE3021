@@ -239,6 +239,8 @@ int getadmin(char *password)
 
 int exec2(char *path, char **argv, int stacksize)
 {
+    if(myproc()->mode == USER) return -1;
+    if(stacksize < 1 || stacksize > 100) return -1;
     myproc()->stacksize = stacksize;
 
     return exec(path, argv); // exec2 success

@@ -601,4 +601,14 @@ int setmemorylimit(int pid, int limit)
     release(&ptable.lock);
     return -1; // setmemory limit success
 }
+
+uint getsz(void)
+{
+  return myproc()->sz;
+}
+
+uint getmemorylimit(void)
+{
+  return myproc()->memlim;
+}
 #endif

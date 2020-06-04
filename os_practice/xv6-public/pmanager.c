@@ -253,6 +253,11 @@ int isCmdEnd(char *s)
   if(s[0] == 0) return 1;
   while(strchr(whitespace, *s)) 
     s++;
+
+  #ifdef VERBOSE
+  printf(2, "isCmdEnd return val -> %d\n", s[0]==0);
+  #endif
+  
   return s[0] == 0;
 }
 
@@ -271,6 +276,11 @@ int getCmdInt(char *s)
 
   while(strchr(whitespace, *s)) 
     s++;
+  
+
+  #ifdef VERBOSE
+  printf(2, "getCmdInt return val -> %d", ret);
+  #endif
   return ret;
 }
 char* getCmdString(char *s, char *d)
@@ -283,6 +293,10 @@ char* getCmdString(char *s, char *d)
 
   while(strchr(whitespace, *s)) 
     s++;
+  
+  #ifdef VERBOSE
+  printf(2,"getCmdString return val -> %s", d);
+  #endif
   return s;
 }
 

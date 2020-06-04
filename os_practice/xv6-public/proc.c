@@ -215,6 +215,9 @@ fork(void)
   pid = np->pid;
 
   #ifdef PROJECT2
+  np->mode = curproc->mode;
+  np->memlim = curproc->memlim;
+  np->stacksize = curproc->stacksize;
   acquire(&tickslock);
   np->upticks = ticks;
   release(&tickslock);

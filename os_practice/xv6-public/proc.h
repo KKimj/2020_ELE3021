@@ -58,6 +58,7 @@ struct proc {
   #ifdef PROJECT2
   uint upticks;
   uint memlim;
+  uint stacksize;
   enum procmode mode;
   #endif
 };

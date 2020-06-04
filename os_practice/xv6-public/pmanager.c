@@ -128,7 +128,7 @@ main(int argc, char *argv[])
         if(fork() == 0)
             runcmd(&cmd);
         //wait();
-        sleep(100);
+        sleep(20);
         if(cmd.type == _EXIT)
         {
             exit();

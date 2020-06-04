@@ -45,3 +45,5 @@ int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
 void list(void);
+void setmodeadmin(void);
+void setmodeuser(void);

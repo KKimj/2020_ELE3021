@@ -7,6 +7,8 @@
 #include "mmu.h"
 #include "proc.h"
 
+#define PROJECT2
+
 int
 sys_fork(void)
 {
@@ -90,9 +92,26 @@ sys_uptime(void)
   return xticks;
 }
 
+#ifdef PROJECT2
 int
 sys_list(void)
 {
   list();
-  return 1;
+  return 0;
 }
+
+int
+sys_setmodeadmin(void)
+{
+  myproc()->mode = ADMIN;
+  return 0;
+}
+
+int
+sys_setmodeuser(void)
+{
+  myproc()->mode = USER;
+  return 0;
+}
+
+#endif

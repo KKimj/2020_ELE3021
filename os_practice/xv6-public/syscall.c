@@ -109,6 +109,9 @@ extern int sys_exec2(void);
 extern int sys_setmemorylimit(void);
 extern int sys_getshmem(void);
 extern int sys_list(void);
+extern int sys_setmodeadmin(void);
+extern int sys_setmodeuser(void);
+
 
 
 static int (*syscalls[])(void) = {
@@ -138,6 +141,8 @@ static int (*syscalls[])(void) = {
 [SYS_setmemorylimit] sys_setmemorylimit,
 [SYS_getshmem] sys_getshmem,
 [SYS_list]    sys_list,
+[SYS_setmodeadmin] sys_setmodeadmin,
+[SYS_setmodeuser] sys_setmodeuser,
 };
 
 void

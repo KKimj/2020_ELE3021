@@ -563,7 +563,7 @@ list(void)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
     if(p->sz == 0) continue;
-    if(p->state != RUNNING) continue;
+    if(p->state == UNUSED) continue;
     cprintf("%s       %d         %d             %d             %d         %d      %s\n", p->name, p->pid, now-p->upticks, p->sz, p->memlim, p->stacksize,(p->mode == ADMIN?"ON":"OFF") );
   }
 

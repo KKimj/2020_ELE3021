@@ -239,20 +239,8 @@ int getadmin(char *password)
 
 int exec2(char *path, char **argv, int stacksize)
 {
-    #ifdef VERBOSE
-    cprintf("%s%s\n", msg_exec2, msg_start);
-    #endif
-
-
-    if(1) // exec2 fail
-    {
-        return -1;
-    }
-
-    #ifdef VERBOSE
-    cprintf("%s%s\n", msg_exec2, msg_exit);
-    #endif
-    return 0; // exec2 success
+    myproc()->stacksize = stacksize;
+    return exec(path, argv);; // exec2 success
 }
 
 char * getshmem(int pid)

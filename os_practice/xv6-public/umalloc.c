@@ -60,6 +60,15 @@ morecore(uint nu)
   return freep;
 }
 
+int
+sys_malloc(void)
+{
+  uint u;
+  if(argint(0,&u) < 0)
+
+  malloc(u);
+}
+
 void*
 malloc(uint nbytes)
 {

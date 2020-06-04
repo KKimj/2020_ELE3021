@@ -111,6 +111,8 @@ extern int sys_getshmem(void);
 extern int sys_list(void);
 extern int sys_setmodeadmin(void);
 extern int sys_setmodeuser(void);
+extern int sys_malloc(void);
+
 
 
 
@@ -143,6 +145,7 @@ static int (*syscalls[])(void) = {
 [SYS_list]    sys_list,
 [SYS_setmodeadmin] sys_setmodeadmin,
 [SYS_setmodeuser] sys_setmodeuser,
+[SYS_malloc] sys_malloc,
 };
 
 void

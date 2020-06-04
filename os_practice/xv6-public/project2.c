@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-#define VERBOSE
+//#define VERBOSE
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);

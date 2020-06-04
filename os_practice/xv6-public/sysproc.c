@@ -190,9 +190,9 @@ sys_getshmem(void)
     return 0;
 }
 
-#ifdef VERBOSE
-#undef VERBOSE
-#endif
+// #ifdef VERBOSE
+// #undef VERBOSE
+// #endif
 
 #ifdef VERBOSE
 // char * msg_start = "Start";
@@ -240,6 +240,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     myproc()->stacksize = stacksize;
+
     return exec(path, argv); // exec2 success
 }
 

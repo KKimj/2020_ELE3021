@@ -9,7 +9,7 @@
 // int setmemorylimit(int pid, int limit);
 // char * getshmem(int pid); 
 
-//#define VERBOSE
+#define VERBOSE
 //#define DEV
 
 
@@ -288,7 +288,14 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE    
         printf(2, "Memlimit pid : %d limit : %d!!\n", cmd_argvint1, cmd_argvint2);
     #endif
-        setmemorylimit(cmd_argvint1, cmd_argvint2);
+        if(!setmemorylimit(cmd_argvint1, cmd_argvint2))
+        {
+          printf(1, "Setmemorylimit Success!\n");
+        }
+        else
+        {
+          printf(1, "Setmemorylimit Fail!\n");
+        }
         break;
     case _EXIT:
     #ifdef VERBOSE     
@@ -383,8 +390,6 @@ char* getCmdString(char *s, char *d)
 int plist(void)
 {
   printf(1, "NAME       | PID |   TIME  (ms)  |   MEMORY  (bytes) |   MEMLIM(bytes)   |   STACK SIZE    |   ADMIN_MODE\n");
-  //int i;
   list();
-  printf(1, "Pmanager's msg : List Done!\n");
   return 0;
 }

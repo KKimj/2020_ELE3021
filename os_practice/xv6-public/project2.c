@@ -1,6 +1,7 @@
 #include "types.h"
 #include "defs.h"
 #define VERBOSE
+#define MAXARG       32  // max exec arguments
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -32,9 +33,36 @@ sys_getadmin(void)
 int
 sys_exec2(void)
 {
-    char * path = "pmanager";
-    char * argv[] = {"argv0", "argv1"};
     int stacksize = 0;
+
+    char *path, *argv[MAXARG];
+    int i;
+    uint uargv, uarg;
+
+    if(argstr(0, &path) < 0 || argint(1, (int*)&uargv) < 0){
+        return -1;
+    }
+    memset(argv, 0, sizeof(argv));
+    for(i=0;; i++){
+        if(i >= NELEM(argv))
+            return -1;
+        if(fetchint(uargv+4*i, (int*)&uarg) < 0)
+            return -1;
+        if(uarg == 0){
+            argv[i] = 0;
+            break;
+        }
+        if(fetchstr(uarg, &argv[i]) < 0)
+            return -1;
+    }
+
+    if(argint(2,&stacksize) < 0)
+        return -1;
+
+    #ifdef VERBOSE
+    cprintf("%d\n", stacksize);
+    #endif
+
     return exec2(path, argv, stacksize);
 }
 
@@ -59,6 +87,8 @@ int
 sys_getshmem(void)
 {
     int pid = 0;
+    if(argint(0,&pid) < 0)
+        return -1;
     getshmem(pid);
     return 0;
 }

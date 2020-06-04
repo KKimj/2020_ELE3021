@@ -532,3 +532,20 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+
+#define VERBOSE
+
+void
+list(void)
+{
+  #ifdef VERBOSE
+  cprintf("list function Start!\n");
+  #endif
+
+
+  #ifdef VERBOSE
+  cprintf("list function Exit!\n");
+  #endif
+  return;
+}

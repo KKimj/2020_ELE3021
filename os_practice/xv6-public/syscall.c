@@ -108,6 +108,7 @@ extern int sys_getadmin(void);
 extern int sys_exec2(void);
 extern int sys_setmemorylimit(void);
 extern int sys_getshmem(void);
+extern int sys_list(void);
 
 
 static int (*syscalls[])(void) = {
@@ -136,6 +137,7 @@ static int (*syscalls[])(void) = {
 [SYS_exec2]   sys_exec2,
 [SYS_setmemorylimit] sys_setmemorylimit,
 [SYS_getshmem] sys_getshmem,
+[SYS_list]    sys_list,
 };
 
 void

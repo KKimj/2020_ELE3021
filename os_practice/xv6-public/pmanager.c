@@ -74,7 +74,7 @@ int isCmdEnd(char *s);
 char* getCmdInt(char *s, int * d);
 char* getCmdString(char *s, char *d);
 
-int list(void);
+int plist(void);
 
 struct cmd cmd;
 int cmd_argc;
@@ -259,7 +259,7 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE
         printf(2, "List !!\n");
     #endif
-        list();
+        plist();
         break;
     case _KILL:
     #ifdef VERBOSE
@@ -368,7 +368,7 @@ char* getCmdString(char *s, char *d)
 
 
 
-int list(void)
+int plist(void)
 {
   printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)\n");
   //int i;

@@ -24,3 +24,4 @@
 #define SYS_exec2  23
 #define SYS_setmemorylimit 24
 #define SYS_getshmem 25
+#define SYS_list 26

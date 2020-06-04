@@ -61,7 +61,6 @@ sys_exec2(void)
 
     #ifdef VERBOSE
     cprintf("%s\n", argv[0]);
-    cprintf("%s\n", argv[1]);
     cprintf("%d\n", stacksize);
     #endif
 

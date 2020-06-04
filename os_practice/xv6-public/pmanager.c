@@ -141,7 +141,8 @@ parsecmd(char *s)
 
   #ifdef VERBOSE
   printf(2, "cmd length-> %d\n",len);
-  printf(2, "cmd string-> %s", s);
+  printf(2, "cmd string-> %s\n", s);
+  printf(2, "cmd list char-> %c\n", s[len-1]);
   #endif
 
   if(len <= 5)
@@ -163,7 +164,7 @@ runcmd(struct cmd *cmd)
 
   switch(cmd->type){
     case _LIST:
-        printf(2, "List !!");
+        printf(2, "List !!\n");
         break;
   }
   exit();

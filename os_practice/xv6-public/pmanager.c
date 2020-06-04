@@ -158,6 +158,6 @@ runcmd(struct cmd *cmd)
     case _LIST:
         printf(2, "List !!");
         break;
-  
+  }
   exit();
 }

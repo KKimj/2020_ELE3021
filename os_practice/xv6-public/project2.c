@@ -91,7 +91,7 @@ int getadmin(char *password)
     #endif
 
     char *_key = key;
-    while(*password != *_key)
+    while(*password == *_key)
     {
         if(*key=='9')
             break;

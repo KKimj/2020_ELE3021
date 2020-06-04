@@ -7,7 +7,8 @@ int
 sys_malloc(void)
 {
   uint u;
-  if(argint(0,&u) < 0)
+  if(argint(0,&(int)u) < 0)
+    return -1;
 
   malloc(u);
 }

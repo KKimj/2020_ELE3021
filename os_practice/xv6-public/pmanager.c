@@ -81,7 +81,7 @@ int cmd_argc;
 char cmd_argvchar0[100];
 char cmd_argvchar1[100];
 char cmd_argvchar2[100];
-char * cmd_argv[] = {cmd_argvchar1};
+char * cmd_argv[2] = {cmd_argvchar1};
 int cmd_argvint1;
 int cmd_argvint2;
 

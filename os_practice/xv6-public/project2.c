@@ -11,7 +11,7 @@ char * getshmem(int pid);
 char * msg_start = "Start";
 char * msg_exit = "Exit";
 char * msg_getadmin = "GetAdm";
-char * msg_exec2 = "ExecTw";
+char * msg_exec2 = "ExeTw";
 char * msg_setmemorylimit = "SetMLmt";
 char * msg_getshmem = "GetShM";
 #endif

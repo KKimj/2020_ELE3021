@@ -151,7 +151,27 @@ parsecmd(char *s)
       {
           cmd.type = _LIST;
       }
+      if(s[0] == 'e' && s[1] == 'x' && s[2] == 'i' && s[3] == 't')
+      {
+          cmd.type = _EXIT;
+      }
   }
+  else
+  {
+      if(s[0] == 'k' && s[1] == 'i' && s[2] == 'l' && s[3] == 'l')
+      {
+          cmd.type = _KILL;
+      }
+      if(s[0] == 'e' && s[1] == 'x' && s[2] == 'e' && s[3] == 'c' && s[4] == 'u' && s[5] == 't' && s[6] == 'e' )
+      {
+          cmd.type = _EXECUTE;
+      }
+      if(s[0] == 'm' && s[1] == 'e' && s[2] == 'm' && s[3] == 'l' && s[4] == 'i' && s[3] == m )
+      {
+          cmd.type = _MEMLIM;
+      }
+  }
+  
   
   return &cmd;
 }

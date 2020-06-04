@@ -90,16 +90,16 @@ int getadmin(char *password)
     cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
     
-    while(*password != *key)
-    {
-        if(*key=='9')
-            break;
-        password++, key++;
-    }
-    if(*key!='9')  // login fail
-    {
-        return -1;
-    }
+    // while(*password != *key)
+    // {
+    //     if(*key=='9')
+    //         break;
+    //     password++, key++;
+    // }
+    // if(*key!='9')  // login fail
+    // {
+    //     return -1;
+    // }
     #ifdef VERBOSE
     cprintf("%s%s\n", msg_getadmin, msg_exit);
     #endif

@@ -66,7 +66,7 @@ exec(char *path, char **argv)
   // Make the first inaccessible.  Use the second as the user stack.
   sz = PGROUNDUP(sz);
   #ifdef PROJECT2
-  if((sz = allocuvm(pgdir, sz, sz + PGSIZE*(1 + curproc->stacksize ))) == 0)
+  if((sz = allocuvm(pgdir, sz, sz + PGSIZE*(1 + (curproc->stacksize==0?1:curproc->stacksize) ))) == 0)
   #else
   if((sz = allocuvm(pgdir, sz, sz + 2*PGSIZE)) == 0)
   #endif

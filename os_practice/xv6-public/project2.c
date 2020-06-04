@@ -99,6 +99,7 @@ int getadmin(char *password)
     }
     if(*_key!='9')  // login fail
     {
+        cprintf("%s", _key);
         return -1;
     }
     #ifdef VERBOSE

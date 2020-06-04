@@ -372,7 +372,7 @@ int plist(void)
 {
   printf(1, "NAME       | PID | TIME  (ms)  | MEMORY  (bytes) | MEMLIM(bytes)\n");
   //int i;
-  
+  list();
   printf(1, "Pmanager's msg : List Done!\n");
   return 0;
 }

@@ -11,8 +11,8 @@ char * getshmem(int pid);
 char * msg_start = "Start!";
 char * msg_exit = "Exit!";
 char * msg_getadmin = "Getadmin ";
-char * msg_exec2 = "exectwo ";
-char * msg_setmemorylimit = "SetmemoryLimit";
+char * msg_exec2 = "extwo ";
+char * msg_setmemorylimit = "SetmemLmit";
 char * msg_getshmem = "Getshmem";
 #endif
 

@@ -1,3 +1,4 @@
+#ifdef PROJECT2
 #include "types.h"
 #include "defs.h"
 // #include "proc.h"
@@ -193,3 +194,4 @@ char * getshmem(int pid)
     return ret_val;
 }
 
+#endif

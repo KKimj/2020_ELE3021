@@ -1,6 +1,6 @@
 #include "types.h"
 #include "defs.h"
-#include "proc.h"
+// #include "proc.h"
 #define VERBOSE
 #define MAXARG       32  // max exec arguments
 

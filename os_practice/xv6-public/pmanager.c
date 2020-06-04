@@ -66,8 +66,6 @@ struct backcmd {
 char whitespace[] = " \t\r\n\v";
 char symbols[] = "<|>&;()";
 
-char* strchr(const char *s, char c);
-
 int getcmd(char *buf, int nbuf);
 struct cmd* parsecmd(char *s);
 void runcmd(struct cmd *cmd);
@@ -237,16 +235,6 @@ runcmd(struct cmd *cmd)
   exit();
 }
 
-
-
-char*
-strchr(const char *s, char c)
-{
-  for(; *s; s++)
-    if(*s == c)
-      return (char*)s;
-  return 0;
-}
 
 
 int isCmdEnd(char *s)

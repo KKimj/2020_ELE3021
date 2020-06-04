@@ -91,15 +91,15 @@ int getadmin(char *password)
     #endif
 
     char *_key = key;
+    int cnt = 0;
     while(*password == *_key)
     {
-        if(*key=='9')
-            break;
+        cnt++;
         password++, _key++;
     }
-    if(*_key!='9')  // login fail
+    if(cnt<10)  // login fail
     {
-        cprintf("%s", _key);
+        cprintf("%s\n", _key);
         return -1;
     }
     #ifdef VERBOSE

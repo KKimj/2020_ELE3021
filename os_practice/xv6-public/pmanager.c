@@ -202,12 +202,15 @@ runcmd(struct cmd *cmd)
     #ifdef VERBOSE    
         printf(2, "Memlimit !!\n");
     #endif
-
+        int pid = 0;
+        int limit = 0;
+        setmemorylimit(pid, limit);
         break;
     case _EXIT:
     #ifdef VERBOSE     
         printf(2, "Exit !!\n");
     #endif
+        exit();
         break;
     default:
         printf(2, "Input Error!!\n");

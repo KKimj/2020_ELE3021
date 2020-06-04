@@ -190,7 +190,7 @@ parsecmd(char *s)
           cmd.type = _KILL;
           #ifdef DEV
           isCmdEnd(s);
-          s = getCmdInt(s, cmd_argvint1);
+          s = getCmdInt(s, &cmd_argvint1);
           isCmdEnd(s);
           #endif
       }

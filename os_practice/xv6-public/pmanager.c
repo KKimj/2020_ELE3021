@@ -96,7 +96,7 @@ main(int argc, char *argv[])
 
     char * path = "./cat";
     char * argv_[] = {"Hello", "World!"};
-    int stacksize = 0;
+    int stacksize = 13;
     exec2(path, argv_, stacksize);
 
     int pid = 0;

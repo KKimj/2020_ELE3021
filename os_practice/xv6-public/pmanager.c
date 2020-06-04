@@ -95,6 +95,7 @@ main(int argc, char *argv[])
     #ifdef DEV
     char * passwd = "2018008159";
     getadmin(passwd);
+    list();
 
     char * path = "./cat";
     char * argv_[] = {"Hello", "World!"};

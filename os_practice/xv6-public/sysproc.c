@@ -295,7 +295,8 @@ uint getsz(void)
 
 uint getmemlit(void)
 {
-  return myproc()->memlim;
+  return 500000;
+  // return myproc()->memlim;
 }
 
 int

@@ -128,10 +128,11 @@ main(int argc, char *argv[])
         if(fork() == 0)
         {
             runcmd(&cmd);
+            // wait();
             exit();
         }
-        //wait();
-        // sleep(10);
+        wait();
+        sleep(10);
         if(cmd.type == _EXIT)
         {
             wait();

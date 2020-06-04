@@ -78,6 +78,10 @@ malloc(uint nbytes)
     printf(2, "Memory limit!!\n");
     return 0;
   }
+  #ifdef VERBOSE
+  printf(2, "@umalloc -> sz : %d memlimt : %d nunits : %d\n", sz, memlimit, nunits);
+  #endif
+
   if((prevp = freep) == 0){
     base.s.ptr = freep = prevp = &base;
     base.s.size = 0;

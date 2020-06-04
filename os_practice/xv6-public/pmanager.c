@@ -68,6 +68,9 @@ int getcmd(char *buf, int nbuf);
 struct cmd* parsecmd(char *s);
 void runcmd(struct cmd *cmd);
 
+
+struct cmd cmd;
+
 int
 main(int argc, char *argv[])
 {
@@ -134,7 +137,6 @@ getcmd(char *buf, int nbuf)
 struct cmd*
 parsecmd(char *s)
 {
-  struct cmd cmd;
   int len = strlen(s);
 
   if(len == 4)

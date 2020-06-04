@@ -7,6 +7,14 @@ int exec2(char *path, char **argv, int stacksize);
 int setmemorylimit(int pid, int limit);
 char * getshmem(int pid); 
 
+#ifdef VERBOS
+char * msg_start = "Start!";
+char * msg_exit = "Exit!";
+char * msg_getadmin = "Getadmin ";
+char * msg_exec2 = "exectwo ";
+char * msg_setmemorylimit = "SetmemoryLimit";
+char * msg_getshmem = "Getshmem";
+#endif
 
 int
 sys_getadmin(void)
@@ -43,7 +51,7 @@ sys_getshmem(void)
 int getadmin(char *password)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "getadm Start!");
+    cprintf("%s%s\n", msg_getadmin, msg_start);
     #endif
 
     if(1)  // login fail
@@ -52,7 +60,7 @@ int getadmin(char *password)
     }
 
     #ifdef VERBOS
-    cprintf("%s\n", "getadm exit!");
+    cprintf("%s%s\n", msg_getadmin, msg_exit);
     #endif
     return 0; // login success
 }
@@ -61,7 +69,7 @@ int getadmin(char *password)
 int exec2(char *path, char **argv, int stacksize)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "exec two Start!");
+    cprintf("%s%s\n", msg_exec2, msg_start);
     #endif
 
 
@@ -71,7 +79,7 @@ int exec2(char *path, char **argv, int stacksize)
     }
 
     #ifdef VERBOS
-    cprintf("%s\n", "exec two exit!");
+    cprintf("%s%s\n", msg_exec2, msg_exit);
     #endif
     return 0; // exec2 success
 }
@@ -80,7 +88,7 @@ int exec2(char *path, char **argv, int stacksize)
 int setmemorylimit(int pid, int limit)
 {
     #ifdef VERBOS
-    cprintf("%s\n", "setmlit Start!");
+    cprintf("%s%s\n", msg_setmemorylimit, msg_start);
     #endif
 
     if(1) // setmemory limit fail
@@ -89,7 +97,7 @@ int setmemorylimit(int pid, int limit)
     }
 
     #ifdef VERBOS
-    cprintf("%s\n", "setmlit exit!");
+    cprintf("%s%s\n", msg_setmemorylimit, msg_exit);
     #endif
     return 0; // setmemory limit success
 }
@@ -98,12 +106,12 @@ char * getshmem(int pid)
     char * ret_val = (char *) 0xFFFFFFFF;
 
     #ifdef VERBOS
-    cprintf("%s\n", "getshm Start!");
+    cprintf("%s%s\n", msg_getshmem, msg_exit);
     #endif
 
 
     #ifdef VERBOS
-    cprintf("%s\n", "getshm exit!");
+    cprintf("%s%s\n", msg_getshmem, msg_exit);
     #endif
     return ret_val;
 }

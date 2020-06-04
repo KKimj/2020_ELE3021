@@ -1,5 +1,6 @@
 #include "types.h"
 #include "defs.h"
+#include "proc.h"
 #define VERBOSE
 #define MAXARG       32  // max exec arguments
 
@@ -22,7 +23,9 @@ sys_getadmin(void)
     int ret = getadmin(passwd);
     #ifdef VERBOSE
     if(!ret)
+    {
         cprintf("ok\n");
+    }
     else
         cprintf("no\n"); 
     #endif

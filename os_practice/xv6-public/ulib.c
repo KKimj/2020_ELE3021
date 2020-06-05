@@ -17,7 +17,9 @@ strcpy(char *s, const char *t)
   #endif
   if(ismyshmem(s)==0) 
   {
-    spanic("page fault exception! @strcpy\n");
+    // spanic("page fault exception! @strcpy\n");
+    printf(2, "page fault exception! @strcpy\n");
+
   }
 
   char *os;

@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   {
     shmem = getshmem(parent);
     
-    *shmem = 'H';
+    // *shmem = 'H';
     printf(1, "@Parent -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, "test");//*shmem);
     wait();
     

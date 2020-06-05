@@ -23,14 +23,14 @@ int main(int argc, char *argv[])
   {
     sleep(100);
     shmem = getshmem(parent);
-    printf(1, "@Child  -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, "test");//*shmem);
+    printf(1, "@Child  -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, *shmem,"test");//*shmem);
   }
   else
   {
     shmem = getshmem(parent);
     
     // *shmem = 'H';
-    printf(1, "@Parent -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, "test");//*shmem);
+    printf(1, "@Parent -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, *shmem, "test");//*shmem);
     wait();
     
   }

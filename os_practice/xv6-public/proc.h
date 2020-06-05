@@ -60,6 +60,8 @@ struct proc {
   uint memlim;
   uint stacksize;
   enum procmode mode;
+  char* shmem;
+  int shmem_pid;
   #endif
 };
 

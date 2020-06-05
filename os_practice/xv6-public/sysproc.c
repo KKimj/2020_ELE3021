@@ -252,17 +252,12 @@ int exec2(char *path, char **argv, int stacksize)
 
 char * getshmem(int pid)
 {
-    char * ret_val = (char *) 0xFFFFFFFF;
-
-    #ifdef VERBOSE
-    cprintf("%s%s\n", msg_getshmem, msg_start);
-    #endif
-
-
-    #ifdef VERBOSE
-    cprintf("%s%s\n", msg_getshmem, msg_exit);
-    #endif
-    return ret_val;
+  struct proc* curproc = myproc();
+  if(curproc->shmem_pid>0)
+    return curproc->shmem;
+  curproc->shmem = curproc->pid;
+  curproc->shmem = kalloc();
+  return curproc->shmem;
 }
 
 

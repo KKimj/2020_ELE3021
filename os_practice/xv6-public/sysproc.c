@@ -186,7 +186,10 @@ sys_getshmem(void)
     int pid = 0;
     if(argint(0,&pid) < 0)
         return -1;
-    getshmem(pid);
+    char * res = getshmem(pid);
+    #ifdef VERBOSE
+    cprintf("@sysproc.c -> getshmem return val : %p\n", res);
+    #endif
     return 0;
 }
 
@@ -195,13 +198,6 @@ sys_getshmem(void)
 // #endif
 
 #ifdef VERBOSE
-// char * msg_start = "Start";
-// char * msg_exit = "Exit";
-// char * msg_getadmin = "GetAd";
-// char * msg_exec2 = "ExeTw";
-// char * msg_setmemorylimit = "SetML";
-// char * msg_getshmem = "GetShM";
-
 char  msg_start[] = "Start!";
 char  msg_exit[] = "Exit!";
 char  msg_getadmin[] = "Getadmin ";

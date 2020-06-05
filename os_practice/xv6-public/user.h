@@ -49,3 +49,4 @@ void setmodeadmin(void);
 void setmodeuser(void);
 uint getmemlit(void);
 uint getsz(void);
+int panic(void);

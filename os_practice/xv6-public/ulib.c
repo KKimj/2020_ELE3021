@@ -8,17 +8,12 @@
 #define DEV
 
 #ifdef DEV
-
-extern int panicked = 0;
 #endif
 char*
 strcpy(char *s, const char *t)
 {
   #ifdef DEV
-  printf(2, "@strcpy panic test!\n");
-  panicked = 1; // freeze other CPU
-  for(;;)
-    ;
+  panic("@strcpy panic test");
   #endif
 
   char *os;

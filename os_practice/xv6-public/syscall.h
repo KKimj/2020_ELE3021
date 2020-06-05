@@ -29,3 +29,4 @@
 #define SYS_setmodeuser 28
 #define SYS_getmemlit 29
 #define SYS_getsz 30
+#define SYS_panic 31

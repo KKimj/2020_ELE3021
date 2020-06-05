@@ -6,9 +6,11 @@
 
 int main(int argc, char *argv[])
 {
-  int pid, parent;
+  int pid;
   char *shmem;
-  parent = getpid();
+
+  // int parent;
+  // parent = getpid();
   shmem = malloc(N);
 
   if ((pid = fork()) < 0)

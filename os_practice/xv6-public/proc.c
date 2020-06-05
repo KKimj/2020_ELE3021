@@ -633,6 +633,7 @@ char * getshmem(int pid)
        #ifdef VERBOSE
         cprintf("@proc.c -> getshmem new shmem pid! : %d address : %p\n", p->pid, p->shmem);
         #endif
+        myproc()->sz += 4096;
        return p->shmem;
       }
       return p->shmem;

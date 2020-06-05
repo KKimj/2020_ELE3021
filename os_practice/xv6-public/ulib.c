@@ -15,6 +15,10 @@ strcpy(char *s, const char *t)
   #ifdef DEV
   spanic("@strcpy panic test");
   #endif
+  if(ismyshmem(s)==0) 
+  {
+    spanic("page fault exception! @strcpy\n");
+  }
 
   char *os;
 

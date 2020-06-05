@@ -191,7 +191,7 @@ sys_getshmem(void)
     char * res = getshmem(pid);
     #ifdef DEV
     *res = 'G';
-    cprintf("@sysproc.c DEV -> getshmem char : %c\n", *res);
+    cprintf("@sysproc.c DEV -> getshmem char : %s\n", res);
     #endif
     #ifdef VERBOSE
     cprintf("@sysproc.c -> getshmem return val : %p pid : %d sizeof(int) : %d sizeof(*char) %d res cast to int %d\n", res, pid, sizeof(int), sizeof(char*), (int)res);

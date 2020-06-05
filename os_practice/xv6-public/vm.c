@@ -422,6 +422,6 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
     }
   }
   // switchuvm(curproc);
-  return (char*)GROUNDUP(newsz);
+  return (char*)PGROUNDUP(newsz);
 }
 #endif

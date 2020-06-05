@@ -103,3 +103,37 @@ malloc(uint nbytes)
         return 0;
   }
 }
+
+
+char*  smalloc(void)
+{
+  #ifdef VERBOSE
+  printf(2, "smalloc\n");
+  
+  #endif
+  Header *p, *prevp;
+  uint nunits;
+  uint nbytes = 4096;
+  nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
+ 
+  if((prevp = freep) == 0){
+    base.s.ptr = freep = prevp = &base;
+    base.s.size = 0;
+  }
+  for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
+    if(p->s.size >= nunits){
+      if(p->s.size == nunits)
+        prevp->s.ptr = p->s.ptr;
+      else {
+        p->s.size -= nunits;
+        p += p->s.size;
+        p->s.size = nunits;
+      }
+      freep = prevp;
+      return (char*)(p + 1);
+    }
+    if(p == freep)
+      if((p = morecore(nunits)) == 0)
+        return 0;
+  }
+}

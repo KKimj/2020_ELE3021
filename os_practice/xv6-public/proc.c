@@ -594,17 +594,14 @@ _free(void *ap)
 }
 
 
-char *
+int
 _sys_sbrk(int n)
 {
   int addr;
   addr = myproc()->sz;
-
-  char * ret = 0xFFFFFFFF;
   if(growproc(n) < 0)
-    return ret;
-  ret = addr;
-  return ret;
+    return -1;
+  return addr;
 }
 
 static Header*
@@ -615,7 +612,8 @@ _morecore(uint nu)
 
   if(nu < 4096)
     nu = 4096;
-  p = _sys_sbrk(nu * sizeof(Header));
+  int tmp = _sys_sbrk(nu * sizeof(Header));
+  p = (char *) tmp;
   if(p == (char*)-1)
     return 0;
   hp = (Header*)p;

@@ -632,6 +632,7 @@ char * getshmem(int pid)
   return 0;
 }
 
+#define DEV
 
 int ismyshmem(char * address)
 {

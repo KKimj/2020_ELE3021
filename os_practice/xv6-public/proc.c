@@ -273,6 +273,12 @@ exit(void)
     }
   }
 
+  #ifdef PROJECT2
+  //TODO FREE Shared memory
+  // kfree(curproc->shmem);
+  // curproc->shmem_pid = 0;
+  #endif
+
   // Jump into the scheduler, never to return.
   curproc->state = ZOMBIE;
   sched();
@@ -609,7 +615,7 @@ char * getshmem(int pid)
     if(p->pid == pid){
       if(p->shmem_pid >0)
       {
-        switchuvm(p);
+        // switchuvm(p);
         release(&ptable.lock);
         #ifdef VERBOSE
         cprintf("@proc.c -> getshmem reuse shmem! pid : %d address : %p\n", p->pid, p->shmem);
@@ -622,7 +628,7 @@ char * getshmem(int pid)
        p->shmem = p2allocuvm(p->pgdir, p->sz, p->sz+4096);
       //  p->shmem = allocuvm(p->pgdir, p->sz, p->sz+4096);
        p->shmem_pid = p->pid;
-      switchuvm(p);
+      // switchuvm(p);
        release(&ptable.lock);
        #ifdef VERBOSE
         cprintf("@proc.c -> getshmem new shmem pid! : %d address : %p\n", p->pid, p->shmem);

@@ -195,7 +195,7 @@ int             setmemorylimit(int pid, int limit);
 char*           getshmem(int pid); 
 
 int             ismyshmem(char * address);
-char*           smalloc(void);
+// char*           smalloc(void);
 int             shmemfree(void);
 
 char*           p2allocuvm(pde_t*, uint, uint);

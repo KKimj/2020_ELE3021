@@ -1,7 +1,7 @@
 #include "types.h"
 #include "defs.h"
-#include "stat.h"
-#include "user.h"
+
+#define VERBOSE
 
 int sys_smalloc(void)
 {
@@ -9,10 +9,10 @@ int sys_smalloc(void)
   printf(2, "@sys_smalloc start!\n");
   #endif
 
-  char * address = malloc(4096);
-  int ret = (int) address;
-  return ret;
+  return 1;
 }
+
+
 int sys_shmemfree(void)
 {
   int pid = getpid();
@@ -21,6 +21,6 @@ int sys_shmemfree(void)
   #ifdef VERBOSE
   printf(2, "@sys_shmemfree start! pid : %d address : %p\n", pid, address);
   #endif
-  free(address);
+//   free(address);
   return 1;
 }

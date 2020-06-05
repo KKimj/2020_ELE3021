@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
   int total = 0;
   int pid = getpid();
   int i=0;
-  char * pre_ptr;
+  char * pre_ptr = 0;
   printf(1, "Memory test: pid is %d\n", pid);
   for (;;)
   {

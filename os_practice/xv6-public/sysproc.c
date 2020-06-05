@@ -250,15 +250,6 @@ int exec2(char *path, char **argv, int stacksize)
     return exec(path, argv); // exec2 success
 }
 
-char * getshmem(int pid)
-{
-  struct proc* curproc = myproc();
-  if(curproc->shmem_pid>0)
-    return curproc->shmem;
-  curproc->shmem_pid = curproc->pid;
-  curproc->shmem = kalloc();
-  return curproc->shmem;
-}
 
 
 int

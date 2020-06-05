@@ -607,4 +607,37 @@ int setmemorylimit(int pid, int limit)
     release(&ptable.lock);
     return -1; // setmemory limit Fail
 }
+
+char * getshmem(int pid)
+{
+  struct proc* curproc = myproc();
+  if(curproc->shmem_pid>0)
+    return curproc->shmem;
+  curproc->shmem_pid = curproc->pid;
+  curproc->shmem = kalloc();
+
+  struct proc *p;
+
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->pid == pid){
+      if(p->shmem_pid >0)
+      {
+        release(&ptable.lock);
+        return p->shmem;
+      }
+      else
+      {
+       p->shmem = kalloc();
+       p->shmem_pid = p->pid;
+       release(&ptable.lock);
+       return p->shmem;
+      }
+      return p->shmem;
+    }
+  }
+  release(&ptable.lock);
+  return 0;
+}
+
 #endif

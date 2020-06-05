@@ -646,7 +646,7 @@ int ismyshmem(char * address)
 
   if(address == 0) return 0;
   struct proc * cur = myproc();
-  if(cur->shmem_pid == 0) return 0;
+  // if(cur->shmem_pid == 0) return 0;
   if( cur->shmem == address ) return cur->pid;
 
 

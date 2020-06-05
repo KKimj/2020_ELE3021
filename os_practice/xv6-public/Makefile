@@ -28,6 +28,7 @@ OBJS = \
 	vectors.o\
 	vm.o\
 	project2.o\
+	umalloc.o\
 	
 
 # Cross-compiling (e.g., on Mac OS X)

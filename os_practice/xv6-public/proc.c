@@ -594,7 +594,7 @@ _free(void *ap)
 }
 
 
-int
+char *
 _sys_sbrk(int n)
 {
   int addr;

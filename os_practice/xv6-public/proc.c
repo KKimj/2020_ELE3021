@@ -709,13 +709,16 @@ int setmemorylimit(int pid, int limit)
 char * getshmem(int pid)
 {
   struct proc *p;
+  struct proc *cur = myproc();
+  
 
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
       if(p->shmem_pid >0)
       {
-        // switchuvm(p);
+        switchuvm(p);
+        switchuvm(cur);
         release(&ptable.lock);
         #ifdef VERBOSE
         cprintf("@proc.c -> getshmem reuse shmem! pid : %d address : %p\n", p->pid, p->shmem);
@@ -725,10 +728,11 @@ char * getshmem(int pid)
       else
       {
       //  p->shmem = kalloc();
-      //  p->shmem = p2allocuvm(p->pgdir, p->sz, p->sz+4096);
-       p->shmem = malloc(4096);
+       p->shmem = p2allocuvm(p->pgdir, p->sz, p->sz+4096);
+      //  p->shmem = malloc(4096);
       //  p->shmem = _malloc(4096);
-
+        switchuvm(cur);
+        switchuvm(p);
       //  p->shmem = allocuvm(p->pgdir, p->sz, p->sz+4096);
        p->shmem_pid = p->pid;
       // switchuvm(p);

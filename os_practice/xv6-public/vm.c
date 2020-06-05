@@ -7,7 +7,7 @@
 #include "proc.h"
 #include "elf.h"
 
-// #define PROJECT2
+#define PROJECT2
 
 extern char data[];  // defined by kernel.ld
 pde_t *kpgdir;  // for use in scheduler()
@@ -396,7 +396,7 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 
 
 #ifdef PROJECT2
-int
+char *
 p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
 {
   char *mem;
@@ -423,6 +423,6 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       return 0;
     }
   }
-  return newsz;
+  return mem;
 }
 #endif

@@ -277,6 +277,7 @@ exit(void)
   //TODO FREE Shared memory
   // kfree(curproc->shmem);
   // curproc->shmem_pid = 0;
+  curproc->shmem_pid = (curproc->shmem_pid ==0? 0: (kfree(curproc->shmem), 0) );
   #endif
 
   // Jump into the scheduler, never to return.

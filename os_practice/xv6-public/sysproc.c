@@ -325,7 +325,7 @@ int sys_ismyshmem(void)
 int sys_smalloc(void)
 {
   #ifdef VERBOSE
-  printf(2, "@sys_smalloc start!\n");
+  cprintf("@sys_smalloc start!\n");
   #endif
 
   return 1;
@@ -338,7 +338,7 @@ int sys_shmemfree(void)
   char * address = getshmem(pid);
 
   #ifdef VERBOSE
-  printf(2, "@sys_shmemfree start! pid : %d address : %p\n", pid, address);
+  cprintf("@sys_shmemfree start! pid : %d address : %p\n", pid, address);
   #endif
 //   free(address);
   return 1;

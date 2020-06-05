@@ -49,5 +49,5 @@ void setmodeadmin(void);
 void setmodeuser(void);
 uint getmemlit(void);
 uint getsz(void);
-void panic(char *s);
+void spanic(char *s);
 

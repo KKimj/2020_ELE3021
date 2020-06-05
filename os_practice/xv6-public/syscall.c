@@ -115,7 +115,7 @@ extern int sys_setmodeadmin(void);
 extern int sys_setmodeuser(void);
 extern int sys_getmemlit(void);
 extern int sys_getsz(void);
-extern int sys_panic(void);
+extern int sys_spanic(void);
 
 
 
@@ -151,7 +151,7 @@ static int (*syscalls[])(void) = {
 [SYS_setmodeuser] sys_setmodeuser,
 [SYS_getmemlit] sys_getmemlit,
 [SYS_getsz] sys_getsz,
-[SYS_panic] sys_panic,
+[SYS_spanic] sys_spanic,
 };
 
 void

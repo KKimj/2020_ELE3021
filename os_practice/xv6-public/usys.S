@@ -38,6 +38,6 @@ SYSCALL(setmodeadmin)
 SYSCALL(setmodeuser)
 SYSCALL(getmemlit)
 SYSCALL(getsz)
-SYSCALL(panic)
+SYSCALL(spanic)
 
 

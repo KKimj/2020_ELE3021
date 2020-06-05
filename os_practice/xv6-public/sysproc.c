@@ -313,7 +313,7 @@ int sys_getsz(void)
   return 0;
 }
 
-int sys_panic(void)
+int sys_spanic(void)
 {
   char * str;
     if( argstr(0, &str) <0 )

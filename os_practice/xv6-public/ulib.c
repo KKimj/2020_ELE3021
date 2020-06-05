@@ -18,7 +18,7 @@ strcpy(char *s, const char *t)
   if(ismyshmem(s)==0) 
   {
     // spanic("page fault exception! @strcpy\n");
-    printf(2, "page fault exception! @strcpy\n");
+    printf(2, "page fault exception! @strcpy address : %p pid : %d\n", s, getpid());
 
   }
 

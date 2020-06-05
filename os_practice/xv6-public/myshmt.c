@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   else
   {
     shmem = getshmem(parent);
-    *shmem = 'H';
+    // *shmem = 'H';
     printf(1, "parent adrress : %d char : %c\n", shmem, *shmem);
     wait();
     

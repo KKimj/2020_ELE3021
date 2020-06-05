@@ -190,8 +190,8 @@ sys_getshmem(void)
     #ifdef VERBOSE
     cprintf("@sysproc.c -> getshmem return val : %p pid : %d sizeof(int) : %d sizeof(*char) %d res cast to int %d\n", res, pid, sizeof(int), sizeof(char*), (int)res);
     #endif
-    return 1;
-    return (int)res;
+    int ret = (int) res;
+    return ret;
 }
 
 // #ifdef VERBOSE

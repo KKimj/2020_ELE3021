@@ -320,4 +320,27 @@ int sys_ismyshmem(void)
         return -1;
   return ismyshmem(address);
 }
+
+
+int sys_smalloc(void)
+{
+  #ifdef VERBOSE
+  printf(2, "@sys_smalloc start!\n");
+  #endif
+
+  return 1;
+}
+
+
+int sys_shmemfree(void)
+{
+  int pid = getpid();
+  char * address = getshmem(pid);
+
+  #ifdef VERBOSE
+  printf(2, "@sys_shmemfree start! pid : %d address : %p\n", pid, address);
+  #endif
+//   free(address);
+  return 1;
+}
 #endif

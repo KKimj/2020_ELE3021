@@ -1,3 +1,5 @@
+
+#ifdef PROJECT2
 #include "types.h"
 #include "x86.h"
 #include "defs.h"
@@ -29,3 +31,4 @@ int sys_shmemfree(void)
 //   free(address);
   return 1;
 }
+#endif

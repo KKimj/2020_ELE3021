@@ -115,7 +115,7 @@ extern int sys_setmodeadmin(void);
 extern int sys_setmodeuser(void);
 extern int sys_getmemlit(void);
 extern int sys_getsz(void);
-extern int sys_panic(void)
+extern int sys_panic(void);
 
 
 

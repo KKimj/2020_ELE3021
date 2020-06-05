@@ -93,8 +93,7 @@ main(int argc, char *argv[])
     #endif
 
     #ifdef DEV
-    char * passwd = "2018008159";
-    getadmin(passwd);
+    getadmin("2018008159");
     list();
 
     int pid = 0;
@@ -107,7 +106,7 @@ main(int argc, char *argv[])
     //exec("pmanager", argv_dev);
     printf(2, "This pid : %d\n", getpid());
     #endif
-    setmodeadmin();
+    getadmin("2018008159");
     static char buf[100];
     int fd;
     // Ensure that three file descriptors are open.

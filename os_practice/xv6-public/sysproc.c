@@ -96,6 +96,7 @@ sys_uptime(void)
 // #include "proc.h"
 #define VERBOSE
 #define MAXARG       32  // max exec arguments
+#define DEV
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);
@@ -180,6 +181,7 @@ sys_setmemorylimit(void)
     return setmemorylimit(pid, limit);
 }
 
+
 int
 sys_getshmem(void)
 {
@@ -187,6 +189,9 @@ sys_getshmem(void)
     if(argint(0,&pid) < 0)
         return -1;
     char * res = getshmem(pid);
+    #ifdef DEV
+    *res = 'G';
+    #endif
     #ifdef VERBOSE
     cprintf("@sysproc.c -> getshmem return val : %p pid : %d sizeof(int) : %d sizeof(*char) %d res cast to int %d\n", res, pid, sizeof(int), sizeof(char*), (int)res);
     #endif

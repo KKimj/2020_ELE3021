@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
   int pid;
   char *shmem;
 
-  // int parent;
-  // parent = getpid();
+  int parent;
+  parent = getpid();
   shmem = malloc(N);
   *shmem = 'T';
 
@@ -22,14 +22,14 @@ int main(int argc, char *argv[])
   if (pid == 0)
   {
     sleep(100);
-    // shmem = getshmem(parent);
+    shmem = getshmem(parent);
     printf(1, "@Child  -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, *shmem);
   }
   else
   {
-    // shmem = getshmem(parent);
+    shmem = getshmem(parent);
     
-    *shmem = 'H';
+    // *shmem = 'H';
     printf(1, "@Parent -> Memory address : %p address cast to int %d char : %c\n", shmem, shmem, *shmem);
     wait();
     

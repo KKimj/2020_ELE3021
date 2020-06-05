@@ -40,5 +40,5 @@ SYSCALL(getmemlit)
 SYSCALL(getsz)
 SYSCALL(spanic)
 SYSCALL(ismyshmem)
-SYSCALL(smalloc)
+
 SYSCALL(shmemfree)

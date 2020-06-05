@@ -5,7 +5,7 @@
 #include "x86.h"
 
 #define PROJECT2
-#define DEV
+// #define DEV
 
 #ifdef DEV
 #endif

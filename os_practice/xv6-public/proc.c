@@ -601,7 +601,8 @@ int setmemorylimit(int pid, int limit)
 }
 
 char * getshmem(int pid)
-{struct proc *p;
+{
+  struct proc *p;
 
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
@@ -631,4 +632,15 @@ char * getshmem(int pid)
   return 0;
 }
 
+
+int ismyshmem(char * address)
+{
+  #ifdef VERBOSE
+  cprintf("@proc.c -> ismyshmem address : %p\n", address);
+  #endif
+
+  #ifdef DEV
+  return 123;
+  #endif
+}
 #endif

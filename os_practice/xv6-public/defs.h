@@ -194,6 +194,11 @@ int             exec2(char *path, char **argv, int stacksize);
 int             setmemorylimit(int pid, int limit);
 char*           getshmem(int pid); 
 
+int             ismyshmem(char * address);
+char*           smalloc(void);
+int             shmemfree(void);
+int             getpid(void);
+
 
 
 // number of elements in fixed-size array

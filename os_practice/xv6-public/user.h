@@ -51,3 +51,10 @@ uint getmemlit(void);
 uint getsz(void);
 void spanic(char *s);
 
+
+int             ismyshmem(char * address);
+char*           smalloc(void);
+int             shmemfree(void);
+int             getpid(void);
+
+

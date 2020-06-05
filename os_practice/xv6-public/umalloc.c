@@ -5,7 +5,7 @@
 // Memory allocator by Kernighan and Ritchie,
 // The C programming Language, 2nd ed.  Section 8.7.
 
-//#define VERBOSE
+#define VERBOSE
 
 typedef long Align;
 
@@ -102,4 +102,27 @@ malloc(uint nbytes)
       if((p = morecore(nunits)) == 0)
         return 0;
   }
+}
+
+
+int sys_smalloc(void)
+{
+  #ifdef VERBOSE
+  printf(2, "@sys_smalloc start!\n");
+  #endif
+
+  char * address = malloc(4096);
+  int ret = (int) address;
+  return ret;
+}
+int sys_shmemfree(void)
+{
+  int pid = getpid();
+  char * address = getshmem(pid);
+
+  #ifdef VERBOSE
+  printf(2, "@sys_shmemfree start! pid : %d address : %p\n", pid, address);
+  #endif
+  free(address);
+  return 1;
 }

@@ -312,4 +312,17 @@ int sys_spanic(void)
   return 0;
 }
 
+
+int sys_ismyshmem(void)
+{
+  char * address;
+    if( argstr(0, &address) <0 )
+        return -1;
+  return ismyshmem(address);
+}
+
+int sys_getpid(void)
+{
+  return myproc()->pid;
+}
 #endif

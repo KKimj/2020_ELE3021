@@ -20,14 +20,19 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
-#define SYS_getadmin 22
-#define SYS_exec2  23
-#define SYS_setmemorylimit 24
-#define SYS_getshmem 25
-#define SYS_list 26
-#define SYS_setmodeadmin 27
-#define SYS_setmodeuser 28
-#define SYS_getmemlit 29
-#define SYS_getsz   30
-#define SYS_spanic   31
+#define SYS_getadmin    22
+#define SYS_exec2       23
+#define SYS_setmemorylimit  24
+#define SYS_getshmem        25
+#define SYS_list            26
+#define SYS_setmodeadmin    27
+#define SYS_setmodeuser     28
+#define SYS_getmemlit       29
+#define SYS_getsz           30
+#define SYS_spanic          31
+#define SYS_ismyshmem   32
+#define SYS_smalloc     33
+#define SYS_shmemfree   34
+#define SYS_getpid      35
+
 

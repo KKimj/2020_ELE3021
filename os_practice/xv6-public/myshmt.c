@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
   {
     shmem = getshmem(parent);
     *shmem = 'H';
-
+    printf(1, "parent : %c\n", *shmem);
     wait();
     
   }

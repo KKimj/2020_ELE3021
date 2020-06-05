@@ -33,6 +33,5 @@
 #define SYS_ismyshmem   32
 #define SYS_smalloc     33
 #define SYS_shmemfree   34
-#define SYS_getpid      35
 
 

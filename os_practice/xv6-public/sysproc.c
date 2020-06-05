@@ -320,9 +320,4 @@ int sys_ismyshmem(void)
         return -1;
   return ismyshmem(address);
 }
-
-int sys_getpid(void)
-{
-  return myproc()->pid;
-}
 #endif

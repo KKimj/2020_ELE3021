@@ -197,7 +197,6 @@ char*           getshmem(int pid);
 int             ismyshmem(char * address);
 char*           smalloc(void);
 int             shmemfree(void);
-int             getpid(void);
 
 
 

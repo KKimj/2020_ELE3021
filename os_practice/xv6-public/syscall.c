@@ -121,7 +121,6 @@ extern int sys_spanic(void);
 extern int sys_ismyshmem(void);
 extern int sys_smalloc(void);
 extern int sys_shmemfree(void);
-extern int sys_getpid(void);
 
 
 
@@ -161,7 +160,6 @@ static int (*syscalls[])(void) = {
 [SYS_ismyshmem] sys_ismyshmem,
 [SYS_smalloc] sys_smalloc,
 [SYS_shmemfree] sys_shmemfree,
-[SYS_getpid] sys_getpid,
 };
 
 void

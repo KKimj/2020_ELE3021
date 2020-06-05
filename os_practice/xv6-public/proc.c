@@ -644,8 +644,30 @@ int ismyshmem(char * address)
   cprintf("@proc.c -> ismyshmem address : %p\n", address);
   #endif
 
-  #ifdef DEV
-  return 123;
-  #endif
+  if(address == 0) return 0;
+  struct proc * cur = myproc();
+  if(cur->shmem_pid == 0) return 0;
+  if( cur->shmem == address ) return cur->pid;
+
+  struct proc *p;
+
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->shmem == address)
+    {
+      if(p->shmem_pid != cur->pid)
+      {
+        release(&ptable.lock);
+        return 0;
+      }
+      else
+      {
+        release(&ptable.lock);
+        return p->shmem_pid;
+      }
+    }
+  }
+  release(&ptable.lock);
+  return 1;
 }
 #endif

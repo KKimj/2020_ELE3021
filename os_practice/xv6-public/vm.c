@@ -421,6 +421,7 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       return 0;
     }
   }
+  // switchuvm(curproc);
   return mem;
 }
 #endif

@@ -198,6 +198,9 @@ int             ismyshmem(char * address);
 char*           smalloc(void);
 int             shmemfree(void);
 
+char*           p2allocuvm(pde_t*, uint, uint);
+
+
 
 
 // number of elements in fixed-size array

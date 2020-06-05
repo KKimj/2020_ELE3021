@@ -13,7 +13,7 @@ char*
 strcpy(char *s, const char *t)
 {
   #ifdef DEV
-  panic("@strcpy panic test");
+  spanic("@strcpy panic test");
   #endif
 
   char *os;

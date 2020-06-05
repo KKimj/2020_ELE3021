@@ -649,14 +649,26 @@ int ismyshmem(char * address)
   if(cur->shmem_pid == 0) return 0;
   if( cur->shmem == address ) return cur->pid;
 
+
+  #ifdef VERBOSE
+  cprintf("@proc.c -> ismyshmem Now ... Through Branchs!\n");
+  #endif
+
   struct proc *p;
 
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->shmem == address)
     {
+
+      #ifdef VERBOSE
+      cprintf("@proc.c -> ismyshmem  Found out shmem!\n");
+      #endif
       if(p->shmem_pid != cur->pid)
       {
+        #ifdef VERBOSE
+        cprintf("@proc.c -> ismyshmem Others, shmem!\n");
+        #endif
         release(&ptable.lock);
         return 0;
       }

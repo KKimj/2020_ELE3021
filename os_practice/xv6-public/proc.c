@@ -593,6 +593,17 @@ _free(void *ap)
   freep = p;
 }
 
+
+int
+_sys_sbrk(int n)
+{
+  int addr;
+  addr = myproc()->sz;
+  if(growproc(n) < 0)
+    return -1;
+  return addr;
+}
+
 static Header*
 _morecore(uint nu)
 {
@@ -601,7 +612,7 @@ _morecore(uint nu)
 
   if(nu < 4096)
     nu = 4096;
-  p = sbrk(nu * sizeof(Header));
+  p = _sys_sbrk(nu * sizeof(Header));
   if(p == (char*)-1)
     return 0;
   hp = (Header*)p;
@@ -615,6 +626,7 @@ _malloc(uint nbytes)
 {
   Header *p, *prevp;
   uint nunits;
+  nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
 
 
   if((prevp = freep) == 0){

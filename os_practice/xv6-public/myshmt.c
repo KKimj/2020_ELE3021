@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   {
     // shmem = getshmem(parent);
     
-    // *shmem = 'H';
+    *shmem = 'H';
     printf(1, "parent adrress : %p address cast to int %d char : %c\n", shmem, shmem, *shmem);
     wait();
     

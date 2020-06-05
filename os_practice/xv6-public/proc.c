@@ -711,6 +711,7 @@ char * getshmem(int pid)
   struct proc *p;
   struct proc *cur = myproc();
   
+  switchkvm();
 
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){

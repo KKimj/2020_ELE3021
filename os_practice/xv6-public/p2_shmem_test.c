@@ -8,12 +8,6 @@ int main(int argc, char *argv[])
   char *shmem;
   parent = getpid();
 
-  int i;
-  for(i=1;i<10;i++)
-  {
-    getshmem(i);
-  }
-  
   if ((pid = fork()) < 0)
   {
     printf(1, "fork failed!\n");

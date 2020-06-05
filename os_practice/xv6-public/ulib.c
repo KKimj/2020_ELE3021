@@ -4,9 +4,23 @@
 #include "user.h"
 #include "x86.h"
 
+#define PROJECT2
+#define DEV
+
+#ifdef DEV
+
+extern int panicked = 0;
+#endif
 char*
 strcpy(char *s, const char *t)
 {
+  #ifdef DEV
+  printf(2, "@strcpy panic test!\n");
+  panicked = 1; // freeze other CPU
+  for(;;)
+    ;
+  #endif
+
   char *os;
 
   os = s;

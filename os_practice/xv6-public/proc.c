@@ -610,7 +610,7 @@ char * getshmem(int pid)
       {
         release(&ptable.lock);
         #ifdef VERBOSE
-        cprintf("@proc.c -> getshmem reuse shmem! pid : %d\n", p->pid);
+        cprintf("@proc.c -> getshmem reuse shmem! pid : %d address : %p\n", p->pid, p->shmem);
         #endif
         return p->shmem;
       }
@@ -620,7 +620,7 @@ char * getshmem(int pid)
        p->shmem_pid = p->pid;
        release(&ptable.lock);
        #ifdef VERBOSE
-        cprintf("@proc.c -> getshmem new shmem pid! : %d\n", p->pid);
+        cprintf("@proc.c -> getshmem new shmem pid! : %d address : %p\n", p->pid, p->shmem);
         #endif
        return p->shmem;
       }

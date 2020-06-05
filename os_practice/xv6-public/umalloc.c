@@ -104,6 +104,9 @@ malloc(uint nbytes)
   }
 }
 
+#ifdef VERBOSE
+#undef VERBOSE
+#endif
 
 int sys_smalloc(void)
 {

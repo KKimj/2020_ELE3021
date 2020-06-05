@@ -546,15 +546,11 @@ procdump(void)
 }
 
 #ifdef PROJECT2
-
-//#define VERBOSE
+#define VERBOSE
 
 void
 list(void)
 {
-  #ifdef VERBOSE
-  cprintf("list function Start!\n");
-  #endif
   // printf(1, "NAME       | PID |   TIME  (ms)  |   MEMORY  (bytes) |   MEMLIM(bytes)   |   STACK SIZE    |   ADMIN_MODE\n");
   acquire(&tickslock);
   uint now = ticks;
@@ -566,10 +562,6 @@ list(void)
     if(p->state == UNUSED) continue;
     cprintf("%s       %d         %d             %d             %d         %d      %s\n", p->name, p->pid, now-p->upticks, p->sz, p->memlim, p->stacksize,(p->mode == ADMIN?"ON":"OFF") );
   }
-
-  #ifdef VERBOSE
-  cprintf("list function Exit!\n");
-  #endif
   return;
 }
 
@@ -617,6 +609,9 @@ char * getshmem(int pid)
       if(p->shmem_pid >0)
       {
         release(&ptable.lock);
+        #ifdef VERBOSE
+        cprintf("@proc.c -> getshmem reuse shmem! pid : %d\n", p->pid);
+        #endif
         return p->shmem;
       }
       else
@@ -624,6 +619,9 @@ char * getshmem(int pid)
        p->shmem = kalloc();
        p->shmem_pid = p->pid;
        release(&ptable.lock);
+       #ifdef VERBOSE
+        cprintf("@proc.c -> getshmem new shmem pid! : %d\n", p->pid);
+        #endif
        return p->shmem;
       }
       return p->shmem;

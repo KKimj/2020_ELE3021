@@ -599,9 +599,12 @@ _sys_sbrk(int n)
 {
   int addr;
   addr = myproc()->sz;
+
+  char * ret = 0xFFFFFFFF;
   if(growproc(n) < 0)
-    return -1;
-  return addr;
+    return ret;
+  ret = addr;
+  return ret;
 }
 
 static Header*

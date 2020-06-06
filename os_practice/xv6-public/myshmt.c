@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
   int parent;
   parent = getpid();
   shmem = malloc(N);
+  shmem = malloc(N);
+  shmem = malloc(N);
   *shmem = 'T';
 
   if ((pid = fork()) < 0)

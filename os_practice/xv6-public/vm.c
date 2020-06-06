@@ -423,7 +423,7 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
   }
 
   int ret;
-  ret = walkpgdir(pgdir, (char*)a, 1);
+  ret = (int) walkpgdir(pgdir, (char*)a, 1);
 
   return (char *) ret;
   // int ret = PGROUNDDOWN((uint)a);

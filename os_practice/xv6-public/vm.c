@@ -421,10 +421,15 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       return 0;
     }
   }
-  int ret = PGROUNDDOWN((uint)a);
-  // ret += PGSIZE;
-  ret = V2P(ret);
+
+  int ret;
+  ret = walkpgdir(pgdir, a, 1);
+
   return (char *) ret;
+  // int ret = PGROUNDDOWN((uint)a);
+  // ret += PGSIZE;
+  // ret = V2P(ret);
+  // return (char *) ret;
   return (char *) a;
   return (char*)((int)mem & (0x7FFFFFFF));
 }

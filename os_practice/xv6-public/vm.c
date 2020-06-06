@@ -421,7 +421,7 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       return 0;
     }
   }
-  int ret = (char*)PGROUNDDOWN((uint)a);
+  int ret = PGROUNDDOWN((uint)a);
   // ret += PGSIZE;
   ret = V2P(ret);
   return (char *) ret;

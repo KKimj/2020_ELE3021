@@ -96,7 +96,7 @@ sys_uptime(void)
 // #include "proc.h"
 #define VERBOSE
 #define MAXARG       32  // max exec arguments
-#define DEV
+// #define DEV
 
 int getadmin(char *password);
 int exec2(char *path, char **argv, int stacksize);

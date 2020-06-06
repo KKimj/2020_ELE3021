@@ -188,6 +188,8 @@ sys_getshmem(void)
     int pid = 0;
     if(argint(0,&pid) < 0)
         return -1;
+
+    // growproc(4096);
     char * res = getshmem(pid);
     #ifdef DEV
     *res = 'G';

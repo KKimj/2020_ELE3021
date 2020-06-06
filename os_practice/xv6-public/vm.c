@@ -399,6 +399,9 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 char *
 p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
 {
+
+
+
   char *mem = 0;
   uint a;
 
@@ -422,6 +425,7 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
     }
   }
 
+  return (char *) a;
   int ret;
   ret = (int) walkpgdir(pgdir, (char*)a, 1);
 

@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     printf(1, "Memory allocated: %d bytes\n", total);
     sleep(300);
     if(pre_ptr)
-    printf(1, "test : last memory in : %d\n", *pre_ptr);
+    printf(1, "test : last memory in : %d @ %p\n", *pre_ptr, pre_ptr);
 
     pre_ptr = ptr;
   }

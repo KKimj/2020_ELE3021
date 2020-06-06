@@ -421,6 +421,7 @@ p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       return 0;
     }
   }
+  return V2P(mem);
   return (char *) a;
   return (char*)((int)mem & (0x7FFFFFFF));
 }

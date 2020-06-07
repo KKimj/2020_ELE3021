@@ -212,7 +212,7 @@ fork(void)
 
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
 
-  safestrcpy(np->tf->esp-512, curproc->tf->esp-512, sizeof(10));
+  safestrcpy( (char *)np->tf->esp-512, (char *)curproc->tf->esp-512, sizeof(10));
   
   pid = np->pid;
 

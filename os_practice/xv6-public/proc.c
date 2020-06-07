@@ -211,6 +211,8 @@ fork(void)
   np->cwd = idup(curproc->cwd);
 
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
+  
+  cprintf("@proc.c fork() %d %d\n", np->tf->esp-512, curproc->tf->esp-512);
 
   safestrcpy( (char *)np->tf->esp-512, (char *)curproc->tf->esp-512, sizeof(10));
   

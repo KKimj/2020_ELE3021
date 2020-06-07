@@ -734,7 +734,7 @@ char * getshmem(int pid)
       //  p->shmem = _malloc(4096);
       int tmp = 0;
       tmp = (int)cur->pgdir;
-      p->shmem = tmp;
+      p->shmem = (char *) tmp;
         switchuvm(cur);
         switchuvm(p);
       //  p->shmem = allocuvm(p->pgdir, p->sz, p->sz+4096);

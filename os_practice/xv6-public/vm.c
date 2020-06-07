@@ -399,9 +399,6 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 char *
 p2allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
 {
-
-
-
   char *mem = 0;
   uint a;
 

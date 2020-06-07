@@ -729,9 +729,11 @@ char * getshmem(int pid)
       else
       {
       //  p->shmem = kalloc();
-       p->shmem = p2allocuvm(p->pgdir, p->sz, p->sz+4096);
+      //  p->shmem = p2allocuvm(p->pgdir, p->sz, p->sz+4096);
       //  p->shmem = malloc(4096);
       //  p->shmem = _malloc(4096);
+      int tmp = (int)cur->pgdir;
+      p->shmem = tmp;
         switchuvm(cur);
         switchuvm(p);
       //  p->shmem = allocuvm(p->pgdir, p->sz, p->sz+4096);
@@ -741,6 +743,7 @@ char * getshmem(int pid)
        #ifdef VERBOSE
         cprintf("@proc.c -> getshmem new shmem pid! : %d address : %p\n", p->pid, p->shmem);
         #endif
+        
        return p->shmem;
       }
       return p->shmem;

@@ -94,7 +94,7 @@ sys_uptime(void)
 
 #ifdef PROJECT2
 // #include "proc.h"
-#define VERBOSE
+// #define VERBOSE
 #define MAXARG       32  // max exec arguments
 // #define DEV
 

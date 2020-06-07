@@ -6,7 +6,7 @@
 
 
 // #include "proc.h"
-#define VERBOSE
+// #define VERBOSE
 #define MAXARG       32  // max exec arguments
 
 int getadmin(char *password);

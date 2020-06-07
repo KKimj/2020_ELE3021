@@ -5,7 +5,7 @@
 // Memory allocator by Kernighan and Ritchie,
 // The C programming Language, 2nd ed.  Section 8.7.
 
-#define VERBOSE
+// #define VERBOSE
 
 typedef long Align;
 

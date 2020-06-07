@@ -212,10 +212,11 @@ fork(void)
 
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
   
+  #ifdef VERBOSE
   cprintf("@proc.c fork() %d %d %s\n", np->tf->esp-512, curproc->tf->esp-512, (char *)curproc->tf->esp-512 );
-
-  safestrcpy( (char *)np->tf->esp-512, (char *)curproc->tf->esp-512, sizeof(10));
   
+  #endif
+//safestrcpy( (char *)np->tf->esp-512, (char *)curproc->tf->esp-512, sizeof(10));
   pid = np->pid;
 
   #ifdef PROJECT2
@@ -557,7 +558,7 @@ procdump(void)
 }
 
 #ifdef PROJECT2
-#define VERBOSE
+// #define VERBOSE
 
 
 typedef long Align;

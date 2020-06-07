@@ -8,7 +8,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
-#define VERBOSE
+// #define VERBOSE
 
 int sys_smalloc(void)
 {

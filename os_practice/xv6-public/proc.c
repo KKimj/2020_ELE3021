@@ -558,7 +558,7 @@ procdump(void)
 }
 
 #ifdef PROJECT2
-// #define VERBOSE
+#define VERBOSE
 
 
 typedef long Align;

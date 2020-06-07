@@ -733,7 +733,8 @@ char * getshmem(int pid)
       //  p->shmem = malloc(4096);
       //  p->shmem = _malloc(4096);
       int tmp = 0;
-      tmp = (int)cur->pgdir;
+      // tmp = (int)cur->pgdir;
+      tmp = cur->tf->esp;
       p->shmem = (char *) tmp;
         switchuvm(cur);
         switchuvm(p);

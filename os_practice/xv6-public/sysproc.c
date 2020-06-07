@@ -336,7 +336,7 @@ int sys_smalloc(void)
 
 int sys_shmemfree(void)
 {
-  int pid = sys_getpid();
+  // int pid = sys_getpid();
   // char * address = getshmem(pid);
 
   #ifdef VERBOSE
